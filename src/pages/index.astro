@@ -1,11 +1,304 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Cambia este número (1, 2 o 3) para ver diferentes diseños
+const designVersion = 1;
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="ConstruHomesCR - Sitio en Construcción">
+	{designVersion === 1 && (
+		<main class="design-1">
+			<div class="container">
+				<div class="content">
+					<h1>ConstruHomes<span>CR</span></h1>
+					<div class="construction-icon">🏗️</div>
+					<h2>Sitio en Construcción</h2>
+					<p>Estamos trabajando para brindarte la mejor experiencia</p>
+					<div class="loader"></div>
+					<a href="mailto:ingenieria@construhomescr.com" class="contact-button">
+						ingenieria@construhomescr.com
+					</a>
+				</div>
+			</div>
+		</main>
+	)}
+
+	{designVersion === 2 && (
+		<main class="design-2">
+			<div class="container">
+				<div class="content">
+					<div class="logo">ConstruHomesCR</div>
+					<div class="card">
+						<h2>Próximamente</h2>
+						<div class="progress">
+							<div class="progress-bar"></div>
+						</div>
+						<p>Estamos construyendo algo increíble</p>
+						<a href="mailto:ingenieria@construhomescr.com" class="email-link">
+							ingenieria@construhomescr.com
+						</a>
+					</div>
+				</div>
+			</div>
+		</main>
+	)}
+
+	{designVersion === 3 && (
+		<main class="design-3">
+			<div class="container">
+				<div class="content">
+					<h1>ConstruHomes<span>CR</span></h1>
+					<div class="message">
+						<div class="tools">
+							<span>🔨</span>
+							<span>🏗️</span>
+							<span>⚡</span>
+						</div>
+						<h2>Sitio Web en Desarrollo</h2>
+						<p>Muy pronto estaremos en línea</p>
+						<div class="dots">
+							<span></span>
+							<span></span>
+							<span></span>
+						</div>
+						<a href="mailto:ingenieria@construhomescr.com" class="contact">
+							ingenieria@construhomescr.com
+						</a>
+					</div>
+				</div>
+			</div>
+		</main>
+	)}
 </Layout>
+
+<style>
+	/* Estilos compartidos */
+	main {
+		min-height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.container {
+		width: 100%;
+		max-width: 600px;
+		margin: 0 2rem;
+		text-align: center;
+	}
+
+	/* Diseño 1 */
+	.design-1 {
+		background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+		color: white;
+	}
+
+	.design-1 .content {
+		background: rgba(255, 255, 255, 0.1);
+		padding: 3rem;
+		border-radius: 20px;
+		backdrop-filter: blur(10px);
+	}
+
+	.design-1 h1 {
+		font-size: 2.5rem;
+		margin-bottom: 2rem;
+	}
+
+	.design-1 h1 span {
+		color: #f6ad55;
+	}
+
+	.design-1 .construction-icon {
+		font-size: 4rem;
+		margin: 2rem 0;
+	}
+
+	.design-1 .loader {
+		width: 50px;
+		height: 50px;
+		border: 5px solid #f3f3f3;
+		border-top: 5px solid #f6ad55;
+		border-radius: 50%;
+		margin: 2rem auto;
+		animation: spin 1s linear infinite;
+	}
+
+	.design-1 .contact-button {
+		display: inline-block;
+		padding: 1rem 2rem;
+		background: #f6ad55;
+		color: #1a365d;
+		text-decoration: none;
+		border-radius: 30px;
+		font-weight: 600;
+		margin-top: 2rem;
+		transition: transform 0.3s ease;
+	}
+
+	.design-1 .contact-button:hover {
+		transform: translateY(-2px);
+	}
+
+	/* Diseño 2 */
+	.design-2 {
+		background: #f7fafc;
+	}
+
+	.design-2 .logo {
+		font-size: 2rem;
+		font-weight: 700;
+		color: #2d3748;
+		margin-bottom: 2rem;
+	}
+
+	.design-2 .card {
+		background: white;
+		padding: 3rem;
+		border-radius: 15px;
+		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+	}
+
+	.design-2 h2 {
+		color: #2d3748;
+		font-size: 2rem;
+		margin-bottom: 2rem;
+	}
+
+	.design-2 .progress {
+		width: 100%;
+		height: 4px;
+		background: #e2e8f0;
+		border-radius: 2px;
+		overflow: hidden;
+		margin: 2rem 0;
+	}
+
+	.design-2 .progress-bar {
+		width: 30%;
+		height: 100%;
+		background: #4299e1;
+		animation: progress 2s ease-in-out infinite;
+	}
+
+	.design-2 .email-link {
+		color: #4299e1;
+		text-decoration: none;
+		font-weight: 500;
+		display: inline-block;
+		margin-top: 2rem;
+		transition: color 0.3s ease;
+	}
+
+	.design-2 .email-link:hover {
+		color: #2b6cb0;
+	}
+
+	/* Diseño 3 */
+	.design-3 {
+		background: #000;
+		color: white;
+	}
+
+	.design-3 .content {
+		padding: 3rem;
+	}
+
+	.design-3 h1 {
+		font-size: 3rem;
+		margin-bottom: 3rem;
+	}
+
+	.design-3 h1 span {
+		color: #48bb78;
+	}
+
+	.design-3 .message {
+		background: #111;
+		padding: 3rem;
+		border-radius: 10px;
+		border: 1px solid #333;
+	}
+
+	.design-3 .tools {
+		margin-bottom: 2rem;
+	}
+
+	.design-3 .tools span {
+		font-size: 2rem;
+		margin: 0 0.5rem;
+	}
+
+	.design-3 .dots {
+		display: flex;
+		justify-content: center;
+		gap: 0.5rem;
+		margin: 2rem 0;
+	}
+
+	.design-3 .dots span {
+		width: 10px;
+		height: 10px;
+		background: #48bb78;
+		border-radius: 50%;
+		animation: pulse 1.5s ease-in-out infinite;
+	}
+
+	.design-3 .dots span:nth-child(2) {
+		animation-delay: 0.5s;
+	}
+
+	.design-3 .dots span:nth-child(3) {
+		animation-delay: 1s;
+	}
+
+	.design-3 .contact {
+		color: #48bb78;
+		text-decoration: none;
+		display: inline-block;
+		margin-top: 2rem;
+		padding: 1rem 2rem;
+		border: 1px solid #48bb78;
+		border-radius: 5px;
+		transition: all 0.3s ease;
+	}
+
+	.design-3 .contact:hover {
+		background: #48bb78;
+		color: #000;
+	}
+
+	/* Animaciones */
+	@keyframes spin {
+		0% { transform: rotate(0deg); }
+		100% { transform: rotate(360deg); }
+	}
+
+	@keyframes progress {
+		0% { transform: translateX(-100%); }
+		50% { transform: translateX(200%); }
+		100% { transform: translateX(-100%); }
+	}
+
+	@keyframes pulse {
+		0%, 100% { transform: scale(1); opacity: 1; }
+		50% { transform: scale(1.5); opacity: 0.5; }
+	}
+
+	/* Responsive */
+	@media (max-width: 640px) {
+		.container {
+			margin: 1rem;
+		}
+
+		.design-1 .content,
+		.design-2 .card,
+		.design-3 .message {
+			padding: 2rem;
+		}
+
+		h1, .design-2 .logo {
+			font-size: 2rem;
+		}
+	}
+</style>
