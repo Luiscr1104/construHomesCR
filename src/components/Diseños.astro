@@ -1,0 +1,214 @@
+---
+const models = [
+  {
+    id: "curridabat",
+    name: "Curridabat",
+    description:
+      "Diseños modernos con líneas limpias, espacios abiertos y grandes ventanales que maximizan la luz natural.",
+    features: [
+      "Espacios abiertos",
+      "Grandes ventanales",
+      "Materiales sostenibles",
+      "Eficiencia energética",
+    ],
+    image: "/images/Curri.jpeg",
+  },
+  {
+    id: "trapiche",
+    name: "Trapiche",
+    description:
+      "Estilo cálido y acogedor inspirado en las casas costeras, con techos de teja, paredes texturizadas y patios interiores.",
+    features: [
+      "Techos de teja",
+      "Paredes texturizadas",
+      "Patios interiores",
+      "Elementos decorativos en hierro",
+    ],
+    image: "/images/Trapiche.jpeg",
+  },
+  {
+    id: "libelula",
+    name: "Libelula",
+    description:
+      "Diseños elegantes y funcionales que priorizan la simplicidad, con espacios despejados y paletas de colores neutros.",
+    features: [
+      "Simplicidad",
+      "Funcionalidad",
+      "Colores neutros",
+      "Pocos elementos decorativos",
+    ],
+    image: "/images/Libelula.jpeg",
+  },
+];
+---
+
+<section
+  id="disenos"
+  class="py-24 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden"
+>
+  <div
+    class="absolute top-20 right-20 w-72 h-72 bg-[#5b8c3e]/5 rounded-full blur-3xl"
+  >
+  </div>
+  <div
+    class="absolute bottom-20 left-20 w-72 h-72 bg-[#5b8c3e]/5 rounded-full blur-3xl"
+  >
+  </div>
+
+  <div class="container px-4 mx-auto relative z-10">
+    <div class="max-w-5xl mx-auto text-center mb-20">
+      <span
+        class="inline-block px-4 py-1.5 mb-4 text-xs font-semibold tracking-wider text-[#5b8c3e] uppercase bg-[#5b8c3e]/10 rounded-full"
+      >
+        Diseños
+      </span>
+      <h2
+        class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-4"
+      >
+        Explora nuestros estilos y encuentra la inspiración para tu proyecto
+        ideal
+      </h2>
+      <div
+        class="w-20 h-1 bg-gradient-to-r from-[#5b8c3e]/60 via-[#5b8c3e] to-[#5b8c3e]/60 mx-auto mb-6"
+      >
+      </div>
+      <p class="text-lg text-gray-600">
+        Estamos listos para hacer realidad tu proyecto.
+      </p>
+    </div>
+
+    <div class="flex justify-center mb-12">
+      <div
+        class="grid grid-cols-3 bg-white/50 backdrop-blur-sm p-1.5 rounded-full border border-gray-200 shadow-lg max-w-xl w-full"
+        id="tabs"
+      >
+        {
+          models.map((model) => (
+            <button
+              type="button"
+              class="tab-btn text-sm md:text-base rounded-full py-3 px-4 font-medium text-gray-700 hover:text-[#5b8c3e] transition-all duration-300"
+              data-tab={model.id}
+            >
+              {model.name}
+            </button>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="relative">
+      {
+        models.map((model) => (
+          <div class="tab-panel hidden" data-tab-panel={model.id}>
+            <div class="grid md:grid-cols-2 gap-12 items-center bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
+              <div class="relative h-[300px] md:h-[400px] rounded-2xl overflow-hidden shadow-lg group">
+                <img
+                  src={model.image}
+                  alt={`Modelo ${model.name}`}
+                  class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                  <span class="inline-block px-3 py-1 text-xs font-semibold tracking-wider text-white uppercase bg-[#5b8c3e] rounded-full mb-2">
+                    Estilo {model.name}
+                  </span>
+                  <p class="text-white text-sm">
+                    Haz clic para ver más detalles
+                  </p>
+                </div>
+              </div>
+              <div>
+                <span class="inline-block px-3 py-1 text-xs font-semibold tracking-wider text-[#5b8c3e] uppercase bg-[#5b8c3e]/10 rounded-full mb-4">
+                  Estilo
+                </span>
+                <h3 class="text-3xl font-bold text-gray-900 mb-4 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+                  {model.name}
+                </h3>
+                <p class="text-gray-600 mb-8 text-lg leading-relaxed">
+                  {model.description}
+                </p>
+                <div class="mb-10">
+                  <h4 class="font-medium text-gray-900 mb-4 text-lg flex items-center">
+                    <span class="w-6 h-6 rounded-full bg-[#5b8c3e]/20 flex items-center justify-center mr-2">
+                      <svg
+                        class="h-4 w-4 text-[#5b8c3e]"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M13 10V3L4 14h7v7l9-11h-7z"
+                        />
+                      </svg>
+                    </span>
+                    Características
+                  </h4>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {model.features.map((feature, index) => (
+                      <div class="flex items-center bg-gray-50 p-3 rounded-xl shadow-sm border border-gray-100 hover:border-[#5b8c3e]/30 hover:bg-[#5b8c3e]/5 transition-all duration-300 group">
+                        <div class="w-8 h-8 rounded-lg bg-[#5b8c3e]/10 flex items-center justify-center mr-3 group-hover:bg-[#5b8c3e]/20 transition-colors duration-300">
+                          <svg
+                            class="h-4 w-4 text-[#5b8c3e]"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
+                        </div>
+                        <span class="text-gray-700 group-hover:text-gray-900 transition-colors duration-300">
+                          {feature}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <a
+                  href="#contacto"
+                  class="inline-block bg-[#5b8c3e] hover:bg-[#4a7233] text-white font-semibold px-6 py-3 rounded-xl shadow-lg shadow-[#5b8c3e]/20 transition-all duration-300 hover:-translate-y-1"
+                >
+                  Solicitar Información
+                </a>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const tabs = document.querySelectorAll(".tab-btn");
+      const panels = document.querySelectorAll(".tab-panel");
+      const activateTab = (id) => {
+        tabs.forEach((btn) => {
+          const isActive = btn.getAttribute("data-tab") === id;
+          btn.classList.toggle("bg-[#5b8c3e]", isActive);
+          btn.classList.toggle("text-white", isActive);
+          btn.classList.toggle("shadow-md", isActive);
+        });
+        panels.forEach((panel) => {
+          panel.classList.toggle(
+            "hidden",
+            panel.getAttribute("data-tab-panel") !== id
+          );
+        });
+      };
+      activateTab("contemporaneo");
+      tabs.forEach((btn) =>
+        btn.addEventListener("click", () =>
+          activateTab(btn.getAttribute("data-tab"))
+        )
+      );
+    });
+  </script>
+</section>
