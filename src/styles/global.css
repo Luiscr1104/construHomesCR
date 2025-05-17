@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme {
+  /* 🎯 Colores primarios */
+  --color-eco-500: #5b703a; /* Verde principal (logo) */
+  --color-eco-white: #ffffff; /* Blanco */
+  --color-eco-dark: #2c3b3f; /* Gris oscuro (tipografía logo) */
+
+  /* 🎨 Colores secundarios */
+  --color-eco-sky: #8398a4; /* Azul grisáceo */
+  --color-eco-brown: #8c6c61; /* Marrón (texto "COLORES") */
+  --color-eco-lime: #a2c047; /* Verde lima */
+}
+@keyframes topo {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100px 100px;
+  }
+}
+
+@layer utilities {
+  .animate-topo {
+    animation: topo 120s linear infinite;
+  }
+}

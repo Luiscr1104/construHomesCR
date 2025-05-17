@@ -1,0 +1,142 @@
+<header
+  id="navbar"
+  class="fixed top-0 z-50 w-full transition-all duration-300 bg-transparent"
+>
+  <div class="container flex h-20 items-center justify-between relative z-50">
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2">
+      <img
+        src="/isotipo.png"
+        alt="Juan José Brenes - Servicios de Ingeniería"
+        width="120"
+        height="50"
+        class="h-auto ml-2 md:ml-6"
+      />
+    </a>
+
+    <!-- Nav desktop -->
+    <nav class="hidden md:flex gap-8 text-lg font-medium">
+      <a href="/#diseños" class="relative group">
+        <span class="transition-colors duration-300 text-eco-500"
+          >Diseños Modelo</span
+        >
+        <span
+          class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full"
+        ></span>
+      </a>
+      <a href="/#servicios" class="relative group">
+        <span class="transition-colors duration-300 text-eco-500"
+          >Servicios</span
+        >
+        <span
+          class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full"
+        ></span>
+      </a>
+      <a href="/#about" class="relative group">
+        <span class="transition-colors duration-300 text-eco-500"
+          >Sobre Nosotros</span
+        >
+        <span
+          class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full"
+        ></span>
+      </a>
+      <a href="/#galeria" class="relative group">
+        <span class="transition-colors duration-300 text-eco-500">Galería</span>
+        <span
+          class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full"
+        ></span>
+      </a>
+      <a href="/#contacto" class="relative group">
+        <span class="transition-colors duration-300 text-eco-500">Contacto</span
+        >
+        <span
+          class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full"
+        ></span>
+      </a>
+    </nav>
+
+    <!-- Botón WhatsApp desktop -->
+    <a
+      href="https://wa.me/50683196472"
+      target="_blank"
+      class="hidden md:flex border border-gold text-white bg-eco-500 hover:bg-eco-dark hover:text-white transition-all duration-300 px-4 py-2 rounded-md"
+    >
+      Whatsapp
+    </a>
+
+    <!-- Botón menú móvil -->
+    <button
+      id="menu-toggle"
+      aria-label="Toggle menu"
+      class="md:hidden z-50 p-2 rounded-full text-white bg-eco-500 hover:bg-eco-dark transition-colors"
+    >
+      ☰
+    </button>
+  </div>
+
+  <!-- Menú móvil (fuera del scroll del navbar) -->
+  <div
+    id="mobile-menu"
+    class="fixed inset-0 bg-black/95 z-40 flex items-center justify-center transition-opacity duration-300 opacity-0 invisible"
+  >
+    <nav
+      class="flex flex-col items-center space-y-8 text-white text-2xl font-light"
+    >
+      <a
+        href="/#servicios"
+        class="hover:text-gold transition-colors duration-300">Servicios</a
+      >
+      <a href="/#about" class="hover:text-gold transition-colors duration-300"
+        >Sobre Nosotros</a
+      >
+      <a href="/#galeria" class="hover:text-gold transition-colors duration-300"
+        >Galería</a
+      >
+      <a
+        href="/#contacto"
+        class="hover:text-gold transition-colors duration-300">Contacto</a
+      >
+      <a
+        href="https://wa.me/50683196472"
+        target="_blank"
+        class="mt-6 border border-gold text-gold hover:bg-eco-500 hover:text-white transition-all duration-300 px-6 py-2 rounded-md"
+      >
+        Whatsapp
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const navbar = document.getElementById("navbar");
+
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener("click", () => {
+        const isOpen = mobileMenu.classList.contains("visible");
+        mobileMenu.classList.toggle("opacity-100", !isOpen);
+        mobileMenu.classList.toggle("visible", !isOpen);
+        mobileMenu.classList.toggle("opacity-0", isOpen);
+        mobileMenu.classList.toggle("invisible", isOpen);
+      });
+    }
+
+    if (navbar) {
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 10) {
+          navbar.classList.add("bg-white/90", "backdrop-blur-md", "shadow-sm");
+          navbar.classList.remove("bg-transparent");
+        } else {
+          navbar.classList.remove(
+            "bg-white/90",
+            "backdrop-blur-md",
+            "shadow-sm"
+          );
+          navbar.classList.add("bg-transparent");
+        }
+      });
+    }
+  });
+</script>

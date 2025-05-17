@@ -1,0 +1,179 @@
+---
+const images = [
+  {
+    url: "/img.jpg",
+    caption: "Diseño Modelo",
+    alt: "Vista aérea del Condominio El Establo rodeado de zonas verdes en La Fortuna de San Carlos",
+  },
+  {
+    url: "/img.jpg",
+    caption: "Diseño Modelo",
+    alt: "Terreno en Condominio Perla 1 con paisaje montañoso en el fondo",
+  },
+  {
+    url: "/img.jpg",
+    caption: "Diseño Modelo",
+    alt: "Vista panorámica del Condominio Gaia con lotes delimitados",
+  },
+  {
+    url: "/img.jpg",
+    caption: "Diseño Modelo",
+    alt: "Entrada del Condominio El Trapiche con camino asfaltado",
+  },
+  {
+    url: "/img.jpg",
+    caption: "Diseño Modelo",
+    alt: "Terreno amplio del Condominio Nakury 1 con cielo despejado",
+  },
+  {
+    url: "/img.jpg",
+    caption: "Diseño Modelo",
+    alt: "Otra vista del Condominio Gaia con vegetación abundante",
+  },
+];
+---
+
+<!-- Encabezado -->
+<div id="galeria" class="text-center mb-16 mt-20">
+  <div class="max-w-5xl mx-auto text-center mb-20">
+    <span
+      class="inline-block px-4 py-1.5 mb-4 text-xs font-semibold tracking-wider text-[#5b8c3e] uppercase bg-[#5b8c3e]/10 rounded-full"
+    >
+      Diseños Modelo
+    </span>
+    <h2
+      class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-4"
+    >
+      Explora nuestros estilos y encuentra la inspiración para tu proyecto ideal
+    </h2>
+    <div
+      class="w-20 h-1 bg-gradient-to-r from-[#5b8c3e]/60 via-[#5b8c3e] to-[#5b8c3e]/60 mx-auto mb-6"
+    >
+    </div>
+    <p class="text-lg text-gray-600">
+      Estamos listos para hacer realidad tu proyecto.
+    </p>
+  </div>
+</div>
+
+<ul class="gallery">
+  {
+    images.map(({ url, caption, alt }) => (
+      <li>
+        <a href="#">
+          <figure>
+            <img src={url} alt={alt} />
+            <figcaption>{caption}</figcaption>
+          </figure>
+        </a>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  .gallery {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    max-width: 100%;
+    width: 70rem;
+  }
+
+  figure {
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    border: 1px solid hsl(var(--primary));
+  }
+
+  img {
+    width: 100%;
+    display: block;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    transition: transform 1000ms;
+  }
+
+  figure::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: hsla(var(--primary), 0.4);
+    transform-origin: center;
+    opacity: 0;
+    transform: scale(2);
+    transition: opacity 300ms;
+  }
+
+  figcaption {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+    color: white;
+    font-size: 1.2rem;
+    z-index: 1;
+    opacity: 0;
+    transition:
+      opacity 600ms,
+      transform 600ms;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  a:is(:hover, :focus) figure::after {
+    opacity: 1;
+  }
+
+  a:is(:hover, :focus) figcaption {
+    opacity: 1;
+    transition: opacity 600ms;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    figcaption {
+      transform: translate3d(0, 2rem, 0);
+    }
+
+    figure::after {
+      border-radius: 50%;
+      opacity: 1;
+      transform: scale(0);
+      transition: transform 900ms;
+    }
+
+    a:is(:hover, :focus) figure::after {
+      transform: scale(2.5);
+    }
+
+    a:is(:hover, :focus) figcaption {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+      transition:
+        opacity 600ms 400ms,
+        transform 600ms 400ms;
+    }
+
+    a:is(:hover, :focus) img {
+      transform: scale(1.2);
+    }
+  }
+</style>
