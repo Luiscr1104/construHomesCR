@@ -189,7 +189,7 @@ const models = [
     document.addEventListener("DOMContentLoaded", () => {
       const tabs = document.querySelectorAll(".tab-btn");
       const panels = document.querySelectorAll(".tab-panel");
-      const activateTab = (id) => {
+      const activateTab = (id: string) => {
         tabs.forEach((btn) => {
           const isActive = btn.getAttribute("data-tab") === id;
           btn.classList.toggle("bg-[#5b8c3e]", isActive);
@@ -203,11 +203,12 @@ const models = [
           );
         });
       };
-      activateTab("contemporaneo");
+      activateTab("curridabat");
       tabs.forEach((btn) =>
-        btn.addEventListener("click", () =>
-          activateTab(btn.getAttribute("data-tab"))
-        )
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-tab");
+          if (id) activateTab(id);
+        })
       );
     });
   </script>
