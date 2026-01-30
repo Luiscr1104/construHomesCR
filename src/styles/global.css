@@ -1,15 +1,19 @@
 @import "tailwindcss";
 
 @theme {
-  /* 🎯 Colores primarios */
-  --color-eco-500: #5b703a; /* Verde principal (logo) */
-  --color-eco-white: #ffffff; /* Blanco */
-  --color-eco-dark: #2c3b3f; /* Gris oscuro (tipografía logo) */
-
-  /* 🎨 Colores secundarios */
-  --color-eco-sky: #8398a4; /* Azul grisáceo */
-  --color-eco-brown: #8c6c61; /* Marrón (texto "COLORES") */
-  --color-eco-lime: #a2c047; /* Verde lima */
+  /* 🏗️ Construction Focused Palette */
+  --color-primary: #fdb813; /* Construction Yellow */
+  --color-primary-dark: #e5a611;
+  --color-dark: #1a1a1a; /* Deep Charcoal */
+  --color-dark-accent: #2c2c2c;
+  --color-steel: #4a4a4a; /* Steel Gray */
+  --color-text: #333333;
+  --color-white: #ffffff;
+  
+  /* Legacy/Logo Compat (Keeping for internal refs if needed) */
+  --color-eco-500: #fdb813; 
+  --color-eco-white: #ffffff;
+  --color-eco-dark: #1a1a1a;
 }
 @keyframes topo {
   0% {

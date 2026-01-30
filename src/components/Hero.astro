@@ -1,65 +1,91 @@
 <section
   id="home"
-  class="relative h-auto min-h-screen flex items-center px-6 md:px-12 lg:px-20 py-12 md:py-20 pt-28"
+  class="relative min-h-screen flex items-center overflow-hidden bg-white pt-20"
 >
+  <!-- Background Accent -->
   <div
-    class="container mx-auto relative z-10 flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-24"
+    class="absolute top-0 right-0 w-1/3 h-full bg-dark hidden lg:block skew-x-[-12deg] translate-x-20 z-0"
   >
-    <!-- Columna de texto -->
-    <div class="w-full max-w-xl mx-auto text-center lg:text-left">
-      <h1
-        class="text-4xl md:text-5xl lg:text-6xl font-bold text-eco-500 leading-tight"
-      >
-        <span class="text-gold">Construimos</span> el Hogar
-        <span class="text-gold">de</span> Tus sueños
-      </h1>
+  </div>
 
-      <p class="text-lg md:text-xl text-eco-dark mt-6 text-pretty">
-        Diseño <span class="text-gold font-medium">consultoría</span> y construcción
-        de proyectos residenciales y comerciales
-        <span class="font-medium text-eco-brown">
-          con los más altos estándares</span
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+      <!-- Text Content -->
+      <div class="w-full lg:w-1/2 text-center lg:text-left">
+        <div
+          class="inline-block px-4 py-1 bg-primary text-dark text-xs font-black uppercase tracking-[0.2em] mb-6"
         >
-        de <span class="font-medium text-eco-sky">calidad</span>.
-      </p>
+          Líderes en Construcción
+        </div>
 
-      <div
-        class="mt-10 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-start"
-      >
-        <a
-          href="#contact"
-          class="bg-eco-brown text-black font-semibold px-8 py-3 sm:px-10 sm:py-4 text-lg rounded-full transition-all duration-300 shadow-md
-            hover:bg-gold-dark hover:shadow-lg focus:ring-4 focus:ring-gold-light focus:outline-none"
+        <h1
+          class="text-5xl md:text-7xl font-black text-dark leading-[0.9] uppercase tracking-tighter mb-8"
         >
-          Diseños Modelo
-        </a>
+          Construimos <br />
+          <span class="text-primary italic">el Futuro</span><br />
+          de su Hogar
+        </h1>
 
-        <a
-          href="https://wa.me/50683196472"
-          class="border-2 border-gold text-gold font-semibold px-8 py-3 sm:px-10 sm:py-4 text-lg rounded-full transition-all duration-300 shadow-md
-            hover:bg-gold hover:text-black hover:shadow-lg focus:ring-4 focus:ring-gold-light focus:outline-none"
+        <p
+          class="text-lg md:text-xl text-steel max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed"
         >
-          Contacto Directo
-        </a>
+          Diseño arquitectónico, consultoría técnica y construcción de alta
+          precisión. Transformamos su visión en estructuras sólidas con <span
+            class="text-dark font-bold underline decoration-primary decoration-4 underline-offset-4"
+            >estándares superiores</span
+          >.
+        </p>
+
+        <div
+          class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+        >
+          <a
+            href="#disenos"
+            class="group relative overflow-hidden bg-dark text-white px-10 py-5 font-black uppercase tracking-widest text-sm transition-all hover:bg-primary hover:text-dark"
+          >
+            <span
+              class="relative z-10 transition-transform group-hover:translate-x-1 inline-block"
+              >Ver Modelos &rarr;</span
+            >
+          </a>
+
+          <a
+            href="https://wa.me/50683196472"
+            class="border-4 border-dark text-dark px-10 py-[1.1rem] font-black uppercase tracking-widest text-sm hover:bg-dark hover:text-white transition-all shadow-xl active:scale-95"
+          >
+            Contacto Directo
+          </a>
+        </div>
       </div>
-    </div>
 
-    <!-- Columna de imagen -->
-    <div class="w-full max-w-xl mx-auto flex flex-col gap-6">
-      <!-- Nueva imagen -->
-      <img
-        src="/img.jpg"
-        alt="Sello de confianza"
-        class="mx-auto w-full rounded-xl shadow-md"
-        loading="lazy"
-      />
-      <!-- Imagen del lema -->
-      <img
-        src="/lema.jpeg"
-        alt="Lema Construhomes"
-        class="mx-auto w-full rounded-xl shadow-xl -mt-8"
-        loading="lazy"
-      />
+      <!-- Image Column -->
+      <div class="w-full lg:w-1/2 relative">
+        <div class="relative group">
+          <!-- Industrial Frame -->
+          <div
+            class="absolute -inset-4 border-4 border-primary/30 z-0 translate-x-4 translate-y-4 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform"
+          >
+          </div>
+
+          <img
+            src="/img.jpg"
+            alt="Obra en construcción de alta calidad"
+            class="relative z-10 w-full object-cover shadow-2xl grayscale hover:grayscale-0 transition-all duration-700"
+            loading="eager"
+          />
+
+          <!-- Floating Badge -->
+          <div
+            class="absolute -bottom-6 -left-6 bg-primary p-6 shadow-2xl z-20 hidden sm:block"
+          >
+            <span class="block text-4xl font-black text-dark">15+</span>
+            <span
+              class="block text-xs font-bold uppercase tracking-widest text-dark/80"
+              >Años de Logros</span
+            >
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
