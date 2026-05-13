@@ -1,0 +1,16 @@
+---
+interface Props {
+  id?: string;
+  theme?: "light" | "dark";
+  class?: string;
+}
+
+const { id, theme = "light", class: extraClass = "" } = Astro.props;
+const bg = theme === "dark" ? "bg-dark" : "bg-white";
+---
+
+<section id={id} class={`py-24 relative ${bg} ${extraClass}`}>
+  <div class="container mx-auto px-6">
+    <slot />
+  </div>
+</section>

@@ -1,0 +1,12 @@
+{
+  "name": "ConstruHomesCR",
+  "short_name": "ConstruHomesCR",
+  "description": "Construcción residencial de calidad en La Fortuna, San Carlos y zona norte de Costa Rica.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#ffffff",
+  "theme_color": "#fdb813",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

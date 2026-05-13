@@ -1,27 +1,38 @@
 @import "tailwindcss";
 
 @theme {
-  /* 🏗️ Construction Focused Palette */
-  --color-primary: #fdb813; /* Construction Yellow */
+  /* Tipografía */
+  --font-display: "Archivo Black", Impact, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  /* Paleta construcción */
+  --color-primary: #fdb813;
   --color-primary-dark: #e5a611;
-  --color-dark: #1a1a1a; /* Deep Charcoal */
+  --color-dark: #1a1a1a;
   --color-dark-accent: #2c2c2c;
-  --color-steel: #4a4a4a; /* Steel Gray */
+  --color-steel: #4a4a4a;
   --color-text: #333333;
   --color-white: #ffffff;
-  
-  /* Legacy/Logo Compat (Keeping for internal refs if needed) */
-  --color-eco-500: #fdb813; 
+
+  /* Compatibilidad legado */
+  --color-eco-500: #fdb813;
   --color-eco-white: #ffffff;
   --color-eco-dark: #1a1a1a;
 }
+
+/* Fuente base del body */
+body {
+  font-family: var(--font-sans);
+}
+
+/* Utility para headings industriales */
+.font-display {
+  font-family: var(--font-display);
+}
+
 @keyframes topo {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 100px 100px;
-  }
+  0% { background-position: 0 0; }
+  100% { background-position: 100px 100px; }
 }
 
 @layer utilities {

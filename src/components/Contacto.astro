@@ -14,13 +14,13 @@ import MapPin from "../../public/icons/MapPin.astro";
         Canales de Atención
       </div>
       <h2
-        class="text-4xl md:text-5xl font-black text-dark uppercase tracking-tighter mb-6"
+        class="font-display text-4xl md:text-5xl font-black text-dark uppercase tracking-tighter mb-6"
       >
         Hagamos Realidad <span class="text-primary italic">tu Proyecto</span>
       </h2>
       <p class="text-lg text-steel max-w-2xl mx-auto leading-relaxed">
-        Atendemos proyectos en La Fortuna, San Carlos y zona norte de Costa
-        Rica. Escribinos y te asesoramos sin compromiso.
+        Atendemos proyectos en La Fortuna, San Carlos y zona norte de Costa Rica.
+        Escribinos y te asesoramos sin ningún compromiso.
       </p>
     </div>
 
@@ -33,8 +33,8 @@ import MapPin from "../../public/icons/MapPin.astro";
           class="absolute top-0 right-0 w-24 h-24 bg-dark/5 -z-0 pointer-events-none"
         >
         </div>
-        <h3 class="text-2xl font-black text-dark uppercase tracking-tight mb-8">
-          Solicitar Información
+        <h3 class="font-display text-2xl font-black text-dark uppercase tracking-tight mb-8">
+          Cotizá tu Proyecto
         </h3>
 
         <form id="contactForm" class="space-y-6 relative z-10">
@@ -50,7 +50,7 @@ import MapPin from "../../public/icons/MapPin.astro";
                 name="name"
                 type="text"
                 required
-                class="w-full bg-gray-50 border-2 border-gray-100 focus:border-primary focus:bg-white p-4 outline-none transition-all font-bold text-dark"
+                class="w-full bg-gray-50 border-2 border-gray-100 focus:border-primary focus:bg-white p-4 outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-all font-bold text-dark"
               />
             </div>
             <div class="space-y-2">
@@ -64,25 +64,41 @@ import MapPin from "../../public/icons/MapPin.astro";
                 name="email"
                 type="email"
                 required
-                class="w-full bg-gray-50 border-2 border-gray-100 focus:border-primary focus:bg-white p-4 outline-none transition-all font-bold text-dark"
+                class="w-full bg-gray-50 border-2 border-gray-100 focus:border-primary focus:bg-white p-4 outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-all font-bold text-dark"
               />
             </div>
           </div>
 
-          <div class="space-y-2">
-            <label
-              for="subject"
-              class="text-[10px] font-black uppercase tracking-widest text-steel block"
-              >Tipo de Proyecto</label
-            >
-            <input
-              id="subject"
-              name="subject"
-              type="text"
-              required
-              class="w-full bg-gray-50 border-2 border-gray-100 focus:border-primary focus:bg-white p-4 outline-none transition-all font-bold text-dark"
-              placeholder="Ej: Vivienda Unifamiliar, Casa en La Fortuna, Consultoría"
-            />
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="space-y-2">
+              <label
+                for="phone"
+                class="text-[10px] font-black uppercase tracking-widest text-steel block"
+                >Teléfono / WhatsApp <span class="text-steel/60 normal-case font-bold">(opcional)</span></label
+              >
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                class="w-full bg-gray-50 border-2 border-gray-100 focus:border-primary focus:bg-white p-4 outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-all font-bold text-dark"
+                placeholder="+506 XXXX XXXX"
+              />
+            </div>
+            <div class="space-y-2">
+              <label
+                for="subject"
+                class="text-[10px] font-black uppercase tracking-widest text-steel block"
+                >Tipo de Proyecto</label
+              >
+              <input
+                id="subject"
+                name="subject"
+                type="text"
+                required
+                class="w-full bg-gray-50 border-2 border-gray-100 focus:border-primary focus:bg-white p-4 outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-all font-bold text-dark"
+                placeholder="Ej: Casa en La Fortuna, Consultoría"
+              />
+            </div>
           </div>
 
           <div class="space-y-2">
@@ -95,15 +111,22 @@ import MapPin from "../../public/icons/MapPin.astro";
               id="message"
               name="message"
               required
-              class="w-full min-h-[150px] bg-gray-50 border-2 border-gray-100 focus:border-primary focus:bg-white p-4 outline-none transition-all font-bold text-dark"
+              class="w-full min-h-[150px] bg-gray-50 border-2 border-gray-100 focus:border-primary focus:bg-white p-4 outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-all font-bold text-dark"
             ></textarea>
           </div>
+
+          <!-- Honeypot: oculto para bots, ignorado en backend -->
+          <div class="hidden" aria-hidden="true">
+            <input name="website" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <div id="form-status" role="status" aria-live="polite" class="hidden"></div>
 
           <button
             type="submit"
             class="w-full bg-dark text-primary font-black uppercase tracking-[0.2em] text-xs py-5 shadow-xl hover:bg-primary hover:text-dark transition-all transform active:scale-[0.98]"
           >
-            Solicitar Información &rarr;
+            Enviar Solicitud &rarr;
           </button>
         </form>
       </div>
@@ -123,7 +146,7 @@ import MapPin from "../../public/icons/MapPin.astro";
         </div>
 
         <div class="relative z-10">
-          <h3 class="text-3xl font-black uppercase tracking-tighter mb-12">
+          <h3 class="font-display text-3xl font-black uppercase tracking-tighter mb-12">
             Contacto <span class="text-primary italic">Directo</span>
           </h3>
 
@@ -143,7 +166,7 @@ import MapPin from "../../public/icons/MapPin.astro";
                 {
                   label: "Email",
                   val: "info@construhomescr.com",
-                  sub: "Atención 24/48h",
+                  sub: "Respuesta en menos de 24h",
                 },
                 {
                   label: "Horario",
@@ -184,16 +207,23 @@ import MapPin from "../../public/icons/MapPin.astro";
 </section>
 
 <script>
+  const showStatus = (el: HTMLElement, msg: string, isError: boolean) => {
+    el.textContent = msg;
+    el.className = isError
+      ? "mt-2 p-4 border-l-4 border-red-500 bg-red-50 text-red-800 font-bold text-sm uppercase tracking-wide"
+      : "mt-2 p-4 border-l-4 border-primary bg-primary/10 text-dark font-bold text-sm uppercase tracking-wide";
+  };
+
   const handleContact = async (event: SubmitEvent) => {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
-    const submitBtn = form.querySelector(
-      'button[type="submit"]',
-    ) as HTMLButtonElement;
+    const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    const statusEl = document.getElementById("form-status") as HTMLElement;
 
     const originalText = submitBtn.innerText;
-    submitBtn.innerText = "PROCESANDO SOLICITUD...";
+    submitBtn.innerText = "PROCESANDO...";
     submitBtn.disabled = true;
+    statusEl.className = "hidden";
 
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
@@ -207,19 +237,17 @@ import MapPin from "../../public/icons/MapPin.astro";
 
       if (response.ok) {
         form.reset();
-        alert("SOLICITUD ENVIADA EXITOSAMENTE. Nos comunicaremos pronto.");
+        showStatus(statusEl, "¡Solicitud enviada! Nos comunicamos pronto.", false);
       } else {
-        alert("ERROR EN EL ENVÍO. Por favor intente vía WhatsApp.");
+        showStatus(statusEl, "Error al enviar. Escribinos por WhatsApp.", true);
       }
-    } catch (error) {
-      alert("ERROR DE CONEXIÓN. Por favor intente vía WhatsApp.");
+    } catch {
+      showStatus(statusEl, "Error de conexión. Escribinos por WhatsApp.", true);
     } finally {
       submitBtn.innerText = originalText;
       submitBtn.disabled = false;
     }
   };
 
-  document
-    .getElementById("contactForm")
-    ?.addEventListener("submit", handleContact);
+  document.getElementById("contactForm")?.addEventListener("submit", handleContact);
 </script>

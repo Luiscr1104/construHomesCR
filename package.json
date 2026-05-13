@@ -8,11 +8,20 @@
     "preview": "astro preview",
     "astro": "astro"
   },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@tailwindcss/oxide",
+      "esbuild",
+      "sharp"
+    ]
+  },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.2",
     "@astrojs/vercel": "^8.1.4",
     "@tailwindcss/vite": "^4.1.7",
     "astro": "^5.7.13",
     "resend": "^4.5.1",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4.1.7"
   }
 }

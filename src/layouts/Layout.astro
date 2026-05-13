@@ -2,52 +2,131 @@
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import WhatsAppFab from "../components/WhatsAppFab.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+}
+
+const SITE = "https://construhomescr.com";
+const DEFAULT_TITLE = "ConstruHomesCR | Construcción Residencial en La Fortuna, San Carlos";
+const DEFAULT_DESC = "Construí tu casa en La Fortuna de San Carlos y zona norte de Costa Rica. Modelos residenciales de calidad, precios transparentes y acompañamiento personalizado. Cotizá hoy.";
+
+const {
+  title = DEFAULT_TITLE,
+  description = DEFAULT_DESC,
+  image = `${SITE}/img.jpg`,
+  canonical = `${SITE}${Astro.url.pathname}`,
+} = Astro.props;
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "GeneralContractor",
+      "@id": `${SITE}/#contractor`,
+      name: "ConstruHomesCR",
+      url: SITE,
+      logo: `${SITE}/isotipo.png`,
+      image: `${SITE}/img.jpg`,
+      description: DEFAULT_DESC,
+      telephone: "+50684291847",
+      email: "info@construhomescr.com",
+      priceRange: "$$",
+      areaServed: [
+        { "@type": "City", name: "La Fortuna" },
+        { "@type": "AdministrativeArea", name: "San Carlos" },
+        { "@type": "AdministrativeArea", name: "Zona Norte, Costa Rica" },
+      ],
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "La Fortuna",
+        addressRegion: "San Carlos, Alajuela",
+        addressCountry: "CR",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: 10.4707,
+        longitude: -84.6431,
+      },
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          opens: "09:00",
+          closes: "18:00",
+        },
+      ],
+      sameAs: [],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE}/#website`,
+      url: SITE,
+      name: "ConstruHomesCR",
+      publisher: { "@id": `${SITE}/#contractor` },
+      inLanguage: "es-CR",
+    },
+  ],
+};
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es-CR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- SEO -->
-    <title>ConstruHomesCR | Construcción Residencial en La Fortuna, San Carlos</title>
-    <meta
-      name="description"
-      content="Construí tu casa en La Fortuna de San Carlos y zona norte de Costa Rica. Modelos residenciales de calidad, precios transparentes y acompañamiento personalizado. Cotizá hoy."
+    <!-- Preconnect para Google Fonts (performance) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Archivo Black (headings) + Inter (body) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
     />
+
+    <!-- Icons / PWA -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- TODO: agregar apple-touch-icon.png (180×180) cuando esté disponible -->
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#fdb813" />
+
+    <!-- SEO primario -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="ConstruHomesCR" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta
       name="keywords"
-      content="construcción La Fortuna, casas San Carlos, constructora zona norte Costa Rica, vivienda La Fortuna, casas prefabricadas San Carlos, construir casa La Fortuna"
+      content="construcción La Fortuna, casas San Carlos, constructora zona norte Costa Rica, vivienda La Fortuna, vivienda llave en mano San Carlos, construir casa La Fortuna"
     />
-    <link rel="canonical" href="https://construhomescr.com/" />
+    <link rel="canonical" href={canonical} />
 
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://construhomescr.com/" />
-    <meta
-      property="og:title"
-      content="ConstruHomesCR | Construcción Residencial en La Fortuna, San Carlos"
-    />
-    <meta
-      property="og:description"
-      content="Construí tu casa en La Fortuna de San Carlos y zona norte de Costa Rica. Modelos probados, precios transparentes. Cotizá sin compromiso."
-    />
-    <meta property="og:image" content="/img.jpg" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="ConstruHomesCR — Construcción residencial en La Fortuna" />
+    <meta property="og:locale" content="es_CR" />
+    <meta property="og:site_name" content="ConstruHomesCR" />
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://construhomescr.com/" />
-    <meta
-      property="twitter:title"
-      content="ConstruHomesCR | Construcción Residencial en La Fortuna, San Carlos"
-    />
-    <meta
-      property="twitter:description"
-      content="Construí tu casa en La Fortuna de San Carlos y zona norte de Costa Rica. Modelos probados, precios transparentes. Cotizá sin compromiso."
-    />
-    <meta property="twitter:image" content="/img.jpg" />
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonical} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
   </head>
   <body class="bg-white text-text antialiased">
     <div
@@ -62,6 +141,7 @@ import Footer from "../components/Footer.astro";
       <slot />
     </main>
     <Footer />
+    <WhatsAppFab />
   </body>
 </html>
 

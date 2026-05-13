@@ -1,162 +1,253 @@
 ---
+import { Image } from "astro:assets";
+import curriImg from "../assets/images/Curri.jpeg";
+import trapicheImg from "../assets/images/Trapiche.jpeg";
+import libelulaImg from "../assets/images/Libelula.jpeg";
+
+const SITE = "https://construhomescr.com";
+
 const models = [
   {
     id: "curridabat",
     name: "Curridabat",
     description:
-      "Diseños modernos con líneas limpias, espacios abiertos y grandes ventanales que maximizan la luz natural.",
+      "Diseños modernos con líneas limpias, espacios abiertos y grandes ventanales que maximizan la luz natural. Ideal para lotes amplios en La Fortuna.",
     features: [
       "Espacios abiertos",
       "Grandes ventanales",
       "Materiales sostenibles",
       "Eficiencia energética",
     ],
-    image: "/images/Curri.jpeg",
+    image: curriImg,
+    imageAlt: "Casa modelo Curridabat — diseño moderno con espacios abiertos en La Fortuna",
+    imageUrl: `${SITE}/images/Curri.jpeg`,
   },
   {
     id: "trapiche",
     name: "Trapiche",
     description:
-      "Estilo cálido y acogedor inspirado en las casas costeras, con techos de teja, paredes texturizadas y patios interiores.",
+      "Estilo cálido y acogedor adaptado al clima tropical de la Zona Norte, con techos de teja, paredes texturizadas y patios interiores que invitan a la brisa.",
     features: [
       "Techos de teja",
       "Paredes texturizadas",
       "Patios interiores",
-      "Elementos decorativos en hierro",
+      "Elementos en hierro",
     ],
-    image: "/images/Trapiche.jpeg",
+    image: trapicheImg,
+    imageAlt: "Casa modelo Trapiche — estilo tropical con teja y patios interiores en San Carlos",
+    imageUrl: `${SITE}/images/Trapiche.jpeg`,
   },
   {
     id: "libelula",
     name: "Libelula",
     description:
-      "Diseños elegantes y funcionales que priorizan la simplicidad, con espacios despejados y paletas de colores neutros.",
+      "Diseños elegantes y funcionales que priorizan la simplicidad, con espacios despejados, paletas neutras y acabados minimalistas de alta calidad.",
     features: [
-      "Simplicidad",
-      "Funcionalidad",
+      "Diseño minimalista",
+      "Funcionalidad total",
       "Colores neutros",
-      "Pocos elementos decorativos",
+      "Acabados premium",
     ],
-    image: "/images/Libelula.jpeg",
+    image: libelulaImg,
+    imageAlt: "Casa modelo Libelula — diseño minimalista elegante en La Fortuna de San Carlos",
+    imageUrl: `${SITE}/images/Libelula.jpeg`,
   },
 ];
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Modelos de casas ConstruHomesCR",
+  description: "Líneas de diseño residencial disponibles en La Fortuna, San Carlos",
+  numberOfItems: models.length,
+  itemListElement: models.map((m, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    item: {
+      "@type": "Product",
+      name: `Casa Modelo ${m.name}`,
+      description: m.description,
+      image: m.imageUrl,
+      brand: { "@type": "Brand", name: "ConstruHomesCR" },
+      offers: {
+        "@type": "Offer",
+        availability: "https://schema.org/InStock",
+        priceCurrency: "CRC",
+        seller: { "@type": "Organization", name: "ConstruHomesCR" },
+      },
+    },
+  })),
+};
 ---
 
-<section
-  id="disenos"
-  class="py-24 bg-white relative overflow-hidden"
->
+<section id="disenos" class="py-24 bg-white relative overflow-hidden">
   <!-- Background industrial pattern -->
-  <div class="absolute inset-0 opacity-[0.02] pointer-events-none bg-[radial-gradient(#1a1a1a_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+  <div
+    class="absolute inset-0 opacity-[0.02] pointer-events-none bg-[radial-gradient(#1a1a1a_1px,transparent_1px)] bg-[size:20px_20px]"
+  >
+  </div>
 
   <div class="container px-6 mx-auto relative z-10">
     <div class="max-w-4xl mx-auto text-center mb-16">
-      <div class="inline-block px-4 py-1 bg-dark text-primary text-[10px] font-black uppercase tracking-[0.3em] mb-4">
+      <div
+        class="inline-block px-4 py-1 bg-dark text-primary text-[10px] font-black uppercase tracking-[0.3em] mb-4"
+      >
         Arquitectura & Diseño
       </div>
-      <h2 class="text-4xl md:text-5xl font-black text-dark uppercase tracking-tighter mb-6">
+      <h2
+        class="font-display text-4xl md:text-5xl font-black text-dark uppercase tracking-tighter mb-6"
+      >
         Modelos <span class="text-primary italic">Exclusivos</span>
       </h2>
       <p class="text-lg text-steel max-w-2xl mx-auto leading-relaxed">
-        Modelos pensados para el clima y el paisaje de la Zona Norte. Explorá nuestras líneas de diseño y encontrá la que se adapta a tu lote en La Fortuna o alrededores.
+        Líneas de diseño pensadas para el clima tropical y el paisaje de la Zona Norte.
+        Encontrá el modelo que se adapta mejor a tu lote en La Fortuna o alrededores.
       </p>
     </div>
 
-    <!-- Industrial Tabs -->
+    <!-- Accessible Tabs -->
     <div class="flex justify-center mb-16">
-      <div class="flex flex-wrap justify-center gap-2 p-1 bg-dark rounded-sm shadow-2xl" id="tabs">
-        {models.map((model) => (
-          <button
-            type="button"
-            class="tab-btn px-8 py-3 text-xs font-black uppercase tracking-widest transition-all duration-300 rounded-sm"
-            data-tab={model.id}
-          >
-            {model.name}
-          </button>
-        ))}
+      <div
+        role="tablist"
+        aria-label="Modelos de casa"
+        class="flex flex-wrap justify-center gap-2 p-1 bg-dark rounded-sm shadow-2xl"
+        id="tabs"
+      >
+        {
+          models.map((model, i) => (
+            <button
+              type="button"
+              role="tab"
+              id={`tab-${model.id}`}
+              aria-selected={i === 0 ? "true" : "false"}
+              aria-controls={`panel-${model.id}`}
+              tabindex={i === 0 ? "0" : "-1"}
+              class="tab-btn px-8 py-3 text-xs font-black uppercase tracking-widest transition-all duration-300 rounded-sm"
+              data-tab={model.id}
+            >
+              {model.name}
+            </button>
+          ))
+        }
       </div>
     </div>
 
     <div class="relative max-w-6xl mx-auto">
-      {models.map((model) => (
-        <div class="tab-panel hidden transition-all duration-500" data-tab-panel={model.id}>
-          <div class="grid lg:grid-cols-2 gap-0 bg-dark shadow-2xl overflow-hidden border-b-8 border-primary group">
-            <!-- Image with zoom effect -->
-            <div class="relative h-[400px] lg:h-auto overflow-hidden">
-              <img
-                src={model.image}
-                alt={`Modelo ${model.name}`}
-                class="object-cover w-full h-full transition-transform duration-1000 group-hover:scale-110"
-              />
-              <div class="absolute inset-0 bg-gradient-to-r from-dark/60 to-transparent"></div>
-            </div>
-
-            <!-- Content -->
-            <div class="p-10 lg:p-16 flex flex-col justify-center">
-              <span class="text-primary font-black uppercase text-[10px] tracking-[0.4em] mb-4">Especificaciones Técnicas</span>
-              <h3 class="text-4xl font-black text-white uppercase tracking-tighter mb-6">
-                Línea <span class="text-primary italic">{model.name}</span>
-              </h3>
-              <p class="text-gray-400 mb-10 text-lg leading-relaxed">
-                {model.description}
-              </p>
-              
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
-                {model.features.map((feature) => (
-                  <div class="flex items-center gap-3 border-l-2 border-primary/30 pl-4 py-2 hover:border-primary transition-colors">
-                    <span class="text-white text-sm font-bold uppercase tracking-wider">{feature}</span>
-                  </div>
-                ))}
+      {
+        models.map((model, i) => (
+          <div
+            id={`panel-${model.id}`}
+            role="tabpanel"
+            aria-labelledby={`tab-${model.id}`}
+            tabindex="0"
+            class={`tab-panel transition-all duration-500 ${i !== 0 ? "hidden" : ""}`}
+            data-tab-panel={model.id}
+          >
+            <div class="grid lg:grid-cols-2 gap-0 bg-dark shadow-2xl overflow-hidden border-b-8 border-primary group">
+              <!-- Image -->
+              <div class="relative h-[400px] lg:h-auto overflow-hidden">
+                <Image
+                  src={model.image}
+                  alt={model.imageAlt}
+                  width={700}
+                  height={500}
+                  format="webp"
+                  quality={85}
+                  loading={i === 0 ? "eager" : "lazy"}
+                  class="object-cover w-full h-full transition-transform duration-1000 group-hover:scale-110"
+                />
+                <div class="absolute inset-0 bg-gradient-to-r from-dark/60 to-transparent" />
               </div>
 
-              <a
-                href="#contacto"
-                class="inline-block bg-primary hover:bg-white text-dark font-black uppercase tracking-widest text-xs px-10 py-5 transition-all text-center"
-              >
-                Solicitar Cotización &rarr;
-              </a>
+              <!-- Content -->
+              <div class="p-10 lg:p-16 flex flex-col justify-center">
+                <span class="text-primary font-black uppercase text-[10px] tracking-[0.4em] mb-4">
+                  Especificaciones Técnicas
+                </span>
+                <h3 class="font-display text-4xl font-black text-white uppercase tracking-tighter mb-6">
+                  Línea <span class="text-primary italic">{model.name}</span>
+                </h3>
+                <p class="text-gray-400 mb-10 text-lg leading-relaxed">{model.description}</p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
+                  {model.features.map((feature) => (
+                    <div class="flex items-center gap-3 border-l-2 border-primary/30 pl-4 py-2 hover:border-primary transition-colors">
+                      <span class="text-white text-sm font-bold uppercase tracking-wider">
+                        {feature}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <a
+                  href="#contacto"
+                  class="inline-block bg-primary hover:bg-white text-dark font-black uppercase tracking-widest text-xs px-10 py-5 transition-all text-center"
+                >
+                  Cotizá este modelo &rarr;
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </div>
 
-  <script>
-    const setupTabs = () => {
-      const tabs = document.querySelectorAll(".tab-btn");
-      const panels = document.querySelectorAll(".tab-panel");
-      
-      const activateTab = (id: string) => {
-        tabs.forEach((btn) => {
-          const isActive = btn.getAttribute("data-tab") === id;
-          btn.classList.toggle("bg-primary", isActive);
-          btn.classList.toggle("text-dark", isActive);
-          btn.classList.toggle("text-white/40", !isActive);
-          btn.classList.toggle("hover:text-white", !isActive);
-        });
-        panels.forEach((panel) => {
-          const isPanel = panel.getAttribute("data-tab-panel") === id;
-          panel.classList.toggle("hidden", !isPanel);
-          if (isPanel) {
-            panel.classList.add("animate-in", "fade-in", "slide-in-from-bottom-4", "duration-500");
-          }
-        });
-      };
+  <script type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />
+</section>
 
-      if (tabs.length > 0) {
-        const firstId = tabs[0].getAttribute("data-tab");
-        if (firstId) activateTab(firstId);
-      }
+<script>
+  const setupTabs = () => {
+    const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>(".tab-btn"));
+    const panels = document.querySelectorAll<HTMLElement>(".tab-panel");
 
-      tabs.forEach((btn) =>
-        btn.addEventListener("click", () => {
-          const id = btn.getAttribute("data-tab");
-          if (id) activateTab(id);
-        })
-      );
+    const activateTab = (id: string) => {
+      tabs.forEach((btn) => {
+        const isActive = btn.getAttribute("data-tab") === id;
+        btn.classList.toggle("bg-primary", isActive);
+        btn.classList.toggle("text-dark", isActive);
+        btn.classList.toggle("text-white/40", !isActive);
+        btn.classList.toggle("hover:text-white", !isActive);
+        btn.setAttribute("aria-selected", isActive ? "true" : "false");
+        btn.setAttribute("tabindex", isActive ? "0" : "-1");
+      });
+      panels.forEach((panel) => {
+        const isPanel = panel.getAttribute("data-tab-panel") === id;
+        panel.classList.toggle("hidden", !isPanel);
+        if (isPanel) {
+          panel.classList.add("animate-in", "fade-in", "slide-in-from-bottom-4", "duration-500");
+        }
+      });
     };
 
-    setupTabs();
-  </script>
-</section>
+    // Activate first tab on load
+    if (tabs.length > 0) {
+      const firstId = tabs[0].getAttribute("data-tab");
+      if (firstId) activateTab(firstId);
+    }
+
+    tabs.forEach((btn) =>
+      btn.addEventListener("click", () => {
+        const id = btn.getAttribute("data-tab");
+        if (id) activateTab(id);
+      })
+    );
+
+    // Arrow key navigation
+    const tabList = document.getElementById("tabs");
+    tabList?.addEventListener("keydown", (e: KeyboardEvent) => {
+      const activeIndex = tabs.findIndex((t) => t.getAttribute("aria-selected") === "true");
+      if (e.key === "ArrowRight") {
+        const next = tabs[(activeIndex + 1) % tabs.length];
+        const id = next.getAttribute("data-tab");
+        if (id) { activateTab(id); next.focus(); }
+      } else if (e.key === "ArrowLeft") {
+        const prev = tabs[(activeIndex - 1 + tabs.length) % tabs.length];
+        const id = prev.getAttribute("data-tab");
+        if (id) { activateTab(id); prev.focus(); }
+      }
+    });
+  };
+
+  setupTabs();
+</script>

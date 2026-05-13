@@ -1,3 +1,8 @@
+---
+import { Image } from "astro:assets";
+import heroImg from "../assets/images/hero.jpg";
+---
+
 <section
   id="home"
   class="relative min-h-screen flex items-center overflow-hidden bg-white pt-20"
@@ -19,7 +24,7 @@
         </div>
 
         <h1
-          class="text-5xl md:text-7xl font-black text-dark leading-[0.9] uppercase tracking-tighter mb-8"
+          class="font-display text-5xl md:text-7xl font-black text-dark leading-[0.9] uppercase tracking-tighter mb-8"
         >
           Construí tu <br />
           <span class="text-primary italic">Casa Soñada</span><br />
@@ -29,9 +34,10 @@
         <p
           class="text-lg md:text-xl text-steel max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed"
         >
-          Construcción residencial de calidad en La Fortuna, San Carlos y
-          alrededores. Modelos probados, precios transparentes y acompañamiento
-          personalizado para que tu proyecto sea una realidad con <span
+          Diseño y construcción residencial llave en mano en La Fortuna, San Carlos
+          y zona norte. Modelos probados, precios transparentes y acompañamiento
+          personalizado para que tu proyecto sea una realidad con{" "}
+          <span
             class="text-dark font-bold underline decoration-primary decoration-4 underline-offset-4"
             >total tranquilidad</span
           >.
@@ -51,10 +57,12 @@
           </a>
 
           <a
-            href="https://wa.me/50684291847"
+            href="https://wa.me/50684291847?text=Hola%2C%20me%20interesa%20cotizar%20una%20casa%20en%20La%20Fortuna"
+            target="_blank"
+            rel="noopener noreferrer"
             class="border-4 border-dark text-dark px-10 py-[1.1rem] font-black uppercase tracking-widest text-sm hover:bg-dark hover:text-white transition-all shadow-xl active:scale-95"
           >
-            Contacto Directo
+            Escribinos por WhatsApp
           </a>
         </div>
       </div>
@@ -68,18 +76,23 @@
           >
           </div>
 
-          <img
-            src="/img.jpg"
-            alt="Obra en construcción de alta calidad"
-            class="relative z-10 w-full object-cover shadow-2xl grayscale hover:grayscale-0 transition-all duration-700"
+          <Image
+            src={heroImg}
+            alt="Construcción residencial de calidad en La Fortuna, San Carlos — ConstruHomesCR"
+            width={800}
+            height={533}
+            format="webp"
+            quality={85}
             loading="eager"
+            fetchpriority="high"
+            class="relative z-10 w-full object-cover shadow-2xl grayscale hover:grayscale-0 transition-all duration-700"
           />
 
           <!-- Floating Badge -->
           <div
             class="absolute -bottom-6 -left-6 bg-primary p-6 shadow-2xl z-20 hidden sm:block"
           >
-            <span class="block text-4xl font-black text-dark">15+</span>
+            <span class="font-display block text-4xl font-black text-dark">15+</span>
             <span
               class="block text-xs font-bold uppercase tracking-widest text-dark/80"
               >Años de Logros</span

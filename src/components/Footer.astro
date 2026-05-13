@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+import isotipoImg from "../assets/isotipo.png";
+
 const navLinks = [
   { label: "Diseños", href: "/#disenos" },
   { label: "Galería", href: "/#galeria" },
@@ -41,21 +44,22 @@ const ticker = Array(6).fill(
           <!-- Logo -->
           <a href="/" class="inline-flex items-center gap-3 group mb-8">
             <div class="bg-primary p-2 group-hover:scale-105 transition-transform">
-              <img
-                src="/isotipo.png"
+              <Image
+                src={isotipoImg}
                 alt="ConstruHomesCR"
-                width="100"
-                height="40"
+                width={100}
+                height={40}
                 class="h-8 w-auto"
+                loading="lazy"
               />
             </div>
-            <span class="text-xl font-bold tracking-tighter text-white uppercase">
+            <span class="font-display text-xl font-bold tracking-tighter text-white uppercase">
               Constru<span class="text-primary">Homes</span>CR
             </span>
           </a>
 
           <!-- Large statement -->
-          <p class="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter leading-[0.95] mb-6">
+          <p class="font-display text-4xl md:text-5xl font-black text-white uppercase tracking-tighter leading-[0.95] mb-6">
             Tu casa en<br />
             <span class="text-primary italic">La Fortuna,</span><br />
             hecha realidad.

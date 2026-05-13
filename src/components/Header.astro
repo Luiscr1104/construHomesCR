@@ -1,3 +1,8 @@
+---
+import { Image } from "astro:assets";
+import isotipoImg from "../assets/isotipo.png";
+---
+
 <header
   id="navbar"
   class="fixed top-0 z-50 w-full transition-all duration-300 bg-transparent py-4"
@@ -8,16 +13,17 @@
       <div
         class="bg-primary p-2 rounded-sm shadow-lg group-hover:scale-105 transition-transform"
       >
-        <img
-          src="/isotipo.png"
+        <Image
+          src={isotipoImg}
           alt="ConstruHomesCR Logo"
-          width="100"
-          height="40"
+          width={100}
+          height={40}
           class="h-8 w-auto"
+          loading="eager"
         />
       </div>
       <span
-        class="text-xl font-bold tracking-tighter text-dark hidden sm:block uppercase"
+        class="font-display text-xl font-bold tracking-tighter text-dark hidden sm:block uppercase"
         >Constru<span class="text-primary">Homes</span>CR</span
       >
     </a>
@@ -25,64 +31,71 @@
     <!-- Nav desktop -->
     <nav class="hidden md:flex items-center gap-8">
       {
-        ["Diseños", "Servicios", "Nosotros", "Galería", "Contacto"].map(
-          (item) => (
-            <a
-              href={`/#${item.toLowerCase().replace("í", "i")}`}
-              class="text-sm font-bold uppercase tracking-widest text-dark hover:text-primary transition-colors relative group py-2"
-            >
-              {item}
-              <span class="absolute bottom-0 left-0 w-0 h-1 bg-primary transition-all duration-300 group-hover:w-full" />
-            </a>
-          ),
-        )
+        ["Diseños", "Galería", "Contacto"].map((item) => (
+          <a
+            href={`/#${item.toLowerCase().replace("í", "i").replace("é", "e")}`}
+            class="text-sm font-bold uppercase tracking-widest text-dark hover:text-primary transition-colors relative group py-2"
+          >
+            {item}
+            <span class="absolute bottom-0 left-0 w-0 h-1 bg-primary transition-all duration-300 group-hover:w-full" />
+          </a>
+        ))
       }
 
       <a
-        href="https://wa.me/50684291847"
+        href="https://wa.me/50684291847?text=Hola%2C%20me%20interesa%20cotizar%20un%20proyecto"
         target="_blank"
+        rel="noopener noreferrer"
         class="bg-dark text-primary px-6 py-2.5 rounded-sm font-bold uppercase text-xs tracking-widest hover:bg-primary hover:text-dark transition-all shadow-md active:scale-95"
       >
-        Cotizar Proyecto
+        Cotizá Gratis
       </a>
     </nav>
 
     <!-- Mobile Button -->
     <button
       id="menu-toggle"
-      aria-label="Menu"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
       class="md:hidden flex flex-col gap-1.5 p-2"
     >
-      <span class="w-6 h-0.5 bg-dark"></span>
-      <span class="w-6 h-0.5 bg-dark"></span>
-      <span class="w-6 h-0.5 bg-dark"></span>
+      <span class="w-6 h-0.5 bg-dark transition-all" id="bar1"></span>
+      <span class="w-6 h-0.5 bg-dark transition-all" id="bar2"></span>
+      <span class="w-6 h-0.5 bg-dark transition-all" id="bar3"></span>
     </button>
   </div>
 
   <!-- Mobile Menu Overlay -->
   <div
     id="mobile-menu"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Menú principal"
     class="fixed inset-0 bg-dark/95 z-[60] flex flex-col items-center justify-center translate-x-full transition-transform duration-500 ease-in-out md:hidden"
   >
-    <button id="close-menu" class="absolute top-8 right-8 text-primary text-4xl"
+    <button
+      id="close-menu"
+      aria-label="Cerrar menú"
+      class="absolute top-8 right-8 text-primary text-4xl leading-none"
       >&times;</button
     >
     <nav class="flex flex-col items-center gap-8">
       {
-        ["Diseños", "Servicios", "Nosotros", "Galería", "Contacto"].map(
-          (item) => (
-            <a
-              href={`/#${item.toLowerCase().replace("í", "i")}`}
-              class="mobile-link text-3xl font-black uppercase text-white hover:text-primary transition-colors"
-            >
-              {item}
-            </a>
-          ),
-        )
+        ["Diseños", "Galería", "Contacto"].map((item) => (
+          <a
+            href={`/#${item.toLowerCase().replace("í", "i").replace("é", "e")}`}
+            class="mobile-link text-3xl font-black uppercase text-white hover:text-primary transition-colors"
+          >
+            {item}
+          </a>
+        ))
       }
       <a
-        href="https://wa.me/50684291847"
-        class="mt-8 bg-primary text-dark px-10 py-4 rounded-sm font-black uppercase text-lg shadow-2xl"
+        href="https://wa.me/50684291847?text=Hola%2C%20me%20interesa%20cotizar%20un%20proyecto"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mobile-link mt-8 bg-primary text-dark px-10 py-4 rounded-sm font-black uppercase text-lg shadow-2xl"
       >
         WhatsApp
       </a>
@@ -93,31 +106,55 @@
 <script>
   const setupNav = () => {
     const navbar = document.getElementById("navbar");
-    const menuToggle = document.getElementById("menu-toggle");
+    const menuToggle = document.getElementById("menu-toggle") as HTMLButtonElement | null;
     const closeMenu = document.getElementById("close-menu");
     const mobileMenu = document.getElementById("mobile-menu");
-    const mobileLinks = document.querySelectorAll(".mobile-link");
+    const mobileLinks = document.querySelectorAll<HTMLElement>(".mobile-link");
 
-    const toggleOpen = () => {
-      mobileMenu?.classList.toggle("translate-x-full");
-      document.body.style.overflow = mobileMenu?.classList.contains(
-        "translate-x-full",
-      )
-        ? ""
-        : "hidden";
+    const isOpen = () => !mobileMenu?.classList.contains("translate-x-full");
+
+    const open = () => {
+      mobileMenu?.classList.remove("translate-x-full");
+      document.body.style.overflow = "hidden";
+      menuToggle?.setAttribute("aria-expanded", "true");
+      menuToggle?.setAttribute("aria-label", "Cerrar menú");
+      // Focus first link
+      const firstLink = mobileMenu?.querySelector<HTMLElement>("a, button");
+      firstLink?.focus();
     };
 
-    menuToggle?.addEventListener("click", toggleOpen);
-    closeMenu?.addEventListener("click", toggleOpen);
-    mobileLinks.forEach((link) => link.addEventListener("click", toggleOpen));
+    const close = () => {
+      mobileMenu?.classList.add("translate-x-full");
+      document.body.style.overflow = "";
+      menuToggle?.setAttribute("aria-expanded", "false");
+      menuToggle?.setAttribute("aria-label", "Abrir menú");
+      menuToggle?.focus();
+    };
 
+    menuToggle?.addEventListener("click", () => (isOpen() ? close() : open()));
+    closeMenu?.addEventListener("click", close);
+    mobileLinks.forEach((link) => link.addEventListener("click", close));
+
+    // Escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && isOpen()) close();
+    });
+
+    // Scroll-aware header (throttled with requestAnimationFrame)
+    let ticking = false;
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 50) {
-        navbar?.classList.add("bg-white/95", "shadow-xl", "py-2");
-        navbar?.classList.remove("bg-transparent", "py-4");
-      } else {
-        navbar?.classList.remove("bg-white/95", "shadow-xl", "py-2");
-        navbar?.classList.add("bg-transparent", "py-4");
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          if (window.scrollY > 50) {
+            navbar?.classList.add("bg-white/95", "shadow-xl", "py-2");
+            navbar?.classList.remove("bg-transparent", "py-4");
+          } else {
+            navbar?.classList.remove("bg-white/95", "shadow-xl", "py-2");
+            navbar?.classList.add("bg-transparent", "py-4");
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     });
   };
