@@ -55,6 +55,8 @@ const faqs = [
           <div class="faq-item border border-gray-200 bg-white" data-index={i}>
             <button
               type="button"
+              id={`faq-trigger-${i}`}
+              aria-controls={`faq-panel-${i}`}
               class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-5 text-left font-black text-dark uppercase tracking-wide text-xs hover:text-primary transition-colors"
               aria-expanded="false"
             >
@@ -64,6 +66,9 @@ const faqs = [
               </span>
             </button>
             <div
+              id={`faq-panel-${i}`}
+              role="region"
+              aria-labelledby={`faq-trigger-${i}`}
               class="faq-answer overflow-hidden"
               style="max-height: 0; transition: max-height 0.3s ease;"
             >
