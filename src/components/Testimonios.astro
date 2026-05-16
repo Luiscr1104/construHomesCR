@@ -1,0 +1,81 @@
+---
+// TODO: reemplazar con testimonios reales de clientes
+const testimonios = [
+  {
+    initials: "CM",
+    name: "Carlos & Andrea Mora",
+    location: "La Fortuna, San Carlos",
+    project: "Casa modelo Curridabat",
+    quote:
+      "Construimos nuestra casa en 8 meses y quedamos encantados con el resultado. El proceso fue transparente desde el primer día.",
+  },
+  {
+    initials: "RQ",
+    name: "Roberto Quesada",
+    location: "Fortuna, Alajuela",
+    project: "Cabaña turística · 2 habitaciones",
+    quote:
+      "Tenía miedo de los trámites y permisos pero ConstruHomesCR lo manejó todo. Hoy mi cabaña genera ₡800,000 al mes en Airbnb.",
+  },
+  {
+    initials: "MA",
+    name: "Mariela Arce",
+    location: "San Carlos",
+    project: "Casa modelo Libelula",
+    quote:
+      "Excelente calidad de materiales y siempre al día con los avances. Recomiendo ConstruHomesCR sin dudarlo.",
+  },
+];
+---
+
+<section class="py-24 bg-white relative overflow-hidden">
+  <div
+    class="absolute inset-0 opacity-[0.02] pointer-events-none bg-[radial-gradient(#1a1a1a_1px,transparent_1px)] bg-[size:20px_20px]"
+  />
+
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="max-w-4xl mx-auto text-center mb-16">
+      <div
+        class="inline-block px-4 py-1 bg-dark text-primary text-[10px] font-black uppercase tracking-[0.3em] mb-4"
+      >
+        Testimonios
+      </div>
+      <h2
+        class="font-display text-4xl md:text-5xl font-black text-dark uppercase tracking-tighter mb-6"
+      >
+        Lo que dicen <span class="text-primary italic">nuestros clientes</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      {
+        testimonios.map((t) => (
+          <div class="bg-white border-2 border-gray-100 p-8 flex flex-col gap-6 hover:border-primary/30 hover:shadow-xl transition-all">
+            <div class="font-display text-6xl leading-none text-primary/20 font-black -mb-2">
+              "
+            </div>
+            <p class="text-dark text-lg leading-relaxed font-medium flex-1">
+              {t.quote}
+            </p>
+            <div class="flex items-center gap-4 pt-4 border-t border-gray-100">
+              <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center font-display font-black text-dark text-sm shrink-0">
+                {t.initials}
+              </div>
+              <div>
+                <div class="font-black text-dark text-sm uppercase tracking-wide">
+                  {t.name}
+                </div>
+                <div class="text-steel text-xs uppercase tracking-widest mt-0.5">
+                  {t.location}
+                </div>
+                <div class="inline-block mt-1 px-2 py-0.5 bg-primary/10 text-dark text-[10px] font-black uppercase tracking-wider">
+                  {t.project}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
