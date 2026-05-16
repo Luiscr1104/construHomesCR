@@ -1,0 +1,123 @@
+---
+const faqs = [
+  {
+    q: "¿Cuánto tiempo toma construir una casa?",
+    a: "Entre 6 y 10 meses dependiendo del modelo y tamaño del proyecto. Casas medianas de aproximadamente 100m² toman en promedio 7 meses desde el inicio de obra.",
+  },
+  {
+    q: "¿Incluyen los permisos municipales en el proyecto?",
+    a: "Sí. Gestionamos todos los trámites ante la Municipalidad de San Carlos y el INVU. Vos solo firmás los documentos necesarios — el papeleo es nuestro.",
+  },
+  {
+    q: "¿Puedo adaptar los diseños a mi lote específico?",
+    a: "Absolutamente. Los modelos son una base de referencia. Adaptamos dimensiones, distribución interna y acabados a las características de tu lote y tus preferencias personales.",
+  },
+  {
+    q: "¿Trabajan con financiamiento bancario (BCR, BN, BAC)?",
+    a: "Sí. Tenemos experiencia trabajando con clientes que financian su proyecto mediante crédito hipotecario. Te acompañamos y asesoramos en ese proceso.",
+  },
+  {
+    q: "¿Qué garantía tienen las construcciones?",
+    a: "Un año de garantía estructural y de acabados. Cualquier defecto constructivo lo atendemos y resolvemos sin costo adicional para el cliente.",
+  },
+  {
+    q: "¿Construyen fuera de La Fortuna?",
+    a: "Atendemos toda la zona norte de Costa Rica: San Carlos, Aguas Zarcas, Pital, Ciudad Quesada y alrededores. Consultanos sobre tu ubicación específica.",
+  },
+  {
+    q: "¿Una cabaña construida por ustedes puede registrarse en Airbnb?",
+    a: "Sí. Diseñamos con el uso turístico en mente: distribución práctica, acabados duraderos y fáciles de mantener, y podemos acompañarte en los requisitos del ICT si necesitás la declaratoria turística.",
+  },
+];
+---
+
+<section id="faq" class="py-24 bg-gray-50 relative">
+  <div class="container mx-auto px-6">
+    <div class="max-w-4xl mx-auto text-center mb-16">
+      <div
+        class="inline-block px-4 py-1 bg-dark text-primary text-[10px] font-black uppercase tracking-[0.3em] mb-4"
+      >
+        FAQ
+      </div>
+      <h2
+        class="font-display text-4xl md:text-5xl font-black text-dark uppercase tracking-tighter mb-6"
+      >
+        Preguntas <span class="text-primary italic">Frecuentes</span>
+      </h2>
+      <p class="text-lg text-steel max-w-2xl mx-auto leading-relaxed">
+        Resolvemos las dudas más comunes antes de que las tengas.
+      </p>
+    </div>
+
+    <div class="max-w-3xl mx-auto space-y-2">
+      {
+        faqs.map((faq, i) => (
+          <div class="faq-item border border-gray-200 bg-white" data-index={i}>
+            <button
+              type="button"
+              class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-5 text-left font-black text-dark uppercase tracking-wide text-xs hover:text-primary transition-colors"
+              aria-expanded="false"
+            >
+              <span>{faq.q}</span>
+              <span class="faq-icon text-primary text-xl font-black shrink-0 transition-transform duration-300">
+                +
+              </span>
+            </button>
+            <div
+              class="faq-answer overflow-hidden"
+              style="max-height: 0; transition: max-height 0.3s ease;"
+            >
+              <p class="px-6 pb-6 text-steel leading-relaxed text-sm">{faq.a}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="text-center mt-12">
+      <a
+        href="https://wa.me/50684291847?text=Hola%2C%20tengo%20una%20pregunta%20sobre%20un%20proyecto%20de%20construcci%C3%B3n"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block bg-dark text-primary font-black uppercase tracking-widest text-xs px-10 py-5 hover:bg-primary hover:text-dark transition-all shadow-xl active:scale-95"
+      >
+        ¿Tenés otra pregunta? Escribinos por WhatsApp &rarr;
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const setupFAQ = () => {
+    const items = document.querySelectorAll<HTMLElement>(".faq-item");
+
+    items.forEach((item) => {
+      const trigger = item.querySelector<HTMLButtonElement>(".faq-trigger");
+      const answer = item.querySelector<HTMLElement>(".faq-answer");
+      const icon = item.querySelector<HTMLElement>(".faq-icon");
+
+      trigger?.addEventListener("click", () => {
+        const isOpen = trigger.getAttribute("aria-expanded") === "true";
+
+        // Cerrar todos
+        items.forEach((other) => {
+          const otherTrigger =
+            other.querySelector<HTMLButtonElement>(".faq-trigger");
+          const otherAnswer = other.querySelector<HTMLElement>(".faq-answer");
+          const otherIcon = other.querySelector<HTMLElement>(".faq-icon");
+          otherTrigger?.setAttribute("aria-expanded", "false");
+          if (otherAnswer) otherAnswer.style.maxHeight = "0";
+          if (otherIcon) otherIcon.textContent = "+";
+        });
+
+        if (!isOpen && answer && icon) {
+          trigger.setAttribute("aria-expanded", "true");
+          answer.style.maxHeight = answer.scrollHeight + "px";
+          icon.textContent = "−";
+        }
+      });
+    });
+  };
+
+  setupFAQ();
+</script>
