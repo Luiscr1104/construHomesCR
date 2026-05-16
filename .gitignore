@@ -26,3 +26,4 @@ pnpm-debug.log*
 # agent data
 .agent/
 .gemini/
+.vercel

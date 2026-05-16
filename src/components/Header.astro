@@ -5,25 +5,25 @@ import isotipoImg from "../assets/isotipo.png";
 
 <header
   id="navbar"
-  class="fixed top-0 z-50 w-full transition-all duration-300 bg-transparent py-4"
+  class="fixed top-0 z-50 w-full transition-all duration-300 bg-white/90 backdrop-blur-sm shadow-sm py-3"
 >
   <div class="container mx-auto px-6 flex items-center justify-between">
     <!-- Logo -->
-    <a href="/" class="flex items-center gap-2 group">
+    <a href="/" class="flex items-center gap-3 group">
       <div
-        class="bg-primary p-2 rounded-sm shadow-lg group-hover:scale-105 transition-transform"
+        class="relative bg-primary rounded-lg p-1.5 transition-all duration-300 group-hover:scale-105"
       >
         <Image
           src={isotipoImg}
           alt="ConstruHomesCR Logo"
-          width={100}
-          height={40}
-          class="h-8 w-auto"
+          width={80}
+          height={32}
+          class="h-7 w-auto block"
           loading="eager"
         />
       </div>
       <span
-        class="font-display text-xl font-bold tracking-tighter text-dark hidden sm:block uppercase"
+        class="font-display text-base font-bold tracking-tight text-dark hidden sm:block"
         >Constru<span class="text-primary">Homes</span>CR</span
       >
     </a>
@@ -34,10 +34,10 @@ import isotipoImg from "../assets/isotipo.png";
         ["Diseños", "Galería", "Contacto"].map((item) => (
           <a
             href={`/#${item.toLowerCase().replace("í", "i").replace("é", "e")}`}
-            class="text-sm font-bold uppercase tracking-widest text-dark hover:text-primary transition-colors relative group py-2"
+            class="text-sm font-bold uppercase tracking-widest text-dark hover:text-primary transition-colors duration-300 relative group py-2"
           >
             {item}
-            <span class="absolute bottom-0 left-0 w-0 h-1 bg-primary transition-all duration-300 group-hover:w-full" />
+            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
           </a>
         ))
       }
@@ -46,7 +46,7 @@ import isotipoImg from "../assets/isotipo.png";
         href="https://wa.me/50684291847?text=Hola%2C%20me%20interesa%20cotizar%20un%20proyecto"
         target="_blank"
         rel="noopener noreferrer"
-        class="bg-dark text-primary px-6 py-2.5 rounded-sm font-bold uppercase text-xs tracking-widest hover:bg-primary hover:text-dark transition-all shadow-md active:scale-95"
+        class="bg-primary text-dark px-6 py-2.5 rounded-sm font-bold uppercase text-xs tracking-widest hover:brightness-110 transition-all shadow-md active:scale-95"
       >
         Cotizá Gratis
       </a>
@@ -60,9 +60,9 @@ import isotipoImg from "../assets/isotipo.png";
       aria-controls="mobile-menu"
       class="md:hidden flex flex-col gap-1.5 p-2"
     >
-      <span class="w-6 h-0.5 bg-dark transition-all" id="bar1"></span>
-      <span class="w-6 h-0.5 bg-dark transition-all" id="bar2"></span>
-      <span class="w-6 h-0.5 bg-dark transition-all" id="bar3"></span>
+      <span class="w-6 h-0.5 bg-dark transition-all duration-300" id="bar1"></span>
+      <span class="w-6 h-0.5 bg-dark transition-all duration-300" id="bar2"></span>
+      <span class="w-6 h-0.5 bg-dark transition-all duration-300" id="bar3"></span>
     </button>
   </div>
 
@@ -118,7 +118,6 @@ import isotipoImg from "../assets/isotipo.png";
       document.body.style.overflow = "hidden";
       menuToggle?.setAttribute("aria-expanded", "true");
       menuToggle?.setAttribute("aria-label", "Cerrar menú");
-      // Focus first link
       const firstLink = mobileMenu?.querySelector<HTMLElement>("a, button");
       firstLink?.focus();
     };
@@ -135,22 +134,22 @@ import isotipoImg from "../assets/isotipo.png";
     closeMenu?.addEventListener("click", close);
     mobileLinks.forEach((link) => link.addEventListener("click", close));
 
-    // Escape key
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && isOpen()) close();
     });
 
-    // Scroll-aware header (throttled with requestAnimationFrame)
     let ticking = false;
     window.addEventListener("scroll", () => {
       if (!ticking) {
         requestAnimationFrame(() => {
           if (window.scrollY > 50) {
-            navbar?.classList.add("bg-white/95", "shadow-xl", "py-2");
-            navbar?.classList.remove("bg-transparent", "py-4");
+            navbar?.classList.add("shadow-xl");
+            navbar?.classList.replace("bg-white/90", "bg-white/98");
+            navbar?.classList.replace("py-3", "py-2");
           } else {
-            navbar?.classList.remove("bg-white/95", "shadow-xl", "py-2");
-            navbar?.classList.add("bg-transparent", "py-4");
+            navbar?.classList.remove("shadow-xl");
+            navbar?.classList.replace("bg-white/98", "bg-white/90");
+            navbar?.classList.replace("py-2", "py-3");
           }
           ticking = false;
         });
