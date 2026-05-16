@@ -11,11 +11,11 @@ const stats = [
   <div class="container mx-auto px-6">
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 lg:divide-x lg:divide-white/10">
       {stats.map((stat) => (
-        <div class="text-center lg:px-8 py-2">
-          <div class="font-display text-5xl md:text-6xl font-black text-primary mb-2 leading-none">{stat.number}</div>
-          <div class="text-white font-bold uppercase tracking-wider text-xs md:text-sm mb-1">{stat.label}</div>
-          <div class="text-gray-500 text-[10px] uppercase tracking-widest font-bold">{stat.sub}</div>
-        </div>
+        <dl class="text-center lg:px-8 py-2">
+          <dt class="font-display text-5xl md:text-6xl font-black text-primary mb-2 leading-none">{stat.number}</dt>
+          <dd class="text-white font-bold uppercase tracking-wider text-xs md:text-sm mb-1">{stat.label}</dd>
+          <dd class="text-gray-500 text-[10px] uppercase tracking-widest font-bold">{stat.sub}</dd>
+        </dl>
       ))}
     </div>
   </div>
