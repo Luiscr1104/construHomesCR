@@ -31,12 +31,17 @@ import isotipoImg from "../assets/isotipo.png";
     <!-- Nav desktop -->
     <nav class="hidden md:flex items-center gap-8">
       {
-        ["Diseños", "Galería", "Contacto"].map((item) => (
+        [
+          { label: "Diseños", href: "/#disenos" },
+          { label: "Galería", href: "/#galeria" },
+          { label: "Blog", href: "/blog/" },
+          { label: "Contacto", href: "/#contacto" },
+        ].map((item) => (
           <a
-            href={`/#${item.toLowerCase().replace("í", "i").replace("é", "e")}`}
+            href={item.href}
             class="text-sm font-bold uppercase tracking-widest text-dark hover:text-primary transition-colors duration-300 relative group py-2"
           >
-            {item}
+            {item.label}
             <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
           </a>
         ))
@@ -82,12 +87,17 @@ import isotipoImg from "../assets/isotipo.png";
     >
     <nav class="flex flex-col items-center gap-8">
       {
-        ["Diseños", "Galería", "Contacto"].map((item) => (
+        [
+          { label: "Diseños", href: "/#disenos" },
+          { label: "Galería", href: "/#galeria" },
+          { label: "Blog", href: "/blog/" },
+          { label: "Contacto", href: "/#contacto" },
+        ].map((item) => (
           <a
-            href={`/#${item.toLowerCase().replace("í", "i").replace("é", "e")}`}
+            href={item.href}
             class="mobile-link text-3xl font-black uppercase text-white hover:text-primary transition-colors"
           >
-            {item}
+            {item.label}
           </a>
         ))
       }

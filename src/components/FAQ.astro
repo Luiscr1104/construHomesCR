@@ -13,8 +13,8 @@ const faqs = [
     a: "Absolutamente. Los modelos son una base de referencia. Adaptamos dimensiones, distribución interna y acabados a las características de tu lote y tus preferencias personales.",
   },
   {
-    q: "¿Trabajan con financiamiento bancario (BCR, BN, BAC)?",
-    a: "Sí. Tenemos experiencia trabajando con clientes que financian su proyecto mediante crédito hipotecario. Te acompañamos y asesoramos en ese proceso.",
+    q: "¿Cómo es el proceso para empezar un proyecto?",
+    a: "Primero agendamos una consulta gratuita para entender tu proyecto y ver el lote. Luego preparamos una propuesta con presupuesto orientativo en 48 horas. Si avanzamos, elaboramos los planos y comenzamos los trámites de permisos.",
   },
   {
     q: "¿Qué garantía tienen las construcciones?",
@@ -29,7 +29,22 @@ const faqs = [
     a: "Sí. Diseñamos con el uso turístico en mente: distribución práctica, acabados duraderos y fáciles de mantener, y podemos acompañarte en los requisitos del ICT si necesitás la declaratoria turística.",
   },
 ];
+
+const faqPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.a,
+    },
+  })),
+};
 ---
+
+<script type="application/ld+json" set:html={JSON.stringify(faqPageSchema)} />
 
 <section id="faq" class="py-24 bg-gray-50 relative">
   <div class="container mx-auto px-6">

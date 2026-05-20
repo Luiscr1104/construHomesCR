@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
   /* Tipografía */
@@ -38,5 +39,50 @@ body {
 @layer utilities {
   .animate-topo {
     animation: topo 120s linear infinite;
+  }
+}
+
+/* Prose overrides — blog content */
+@layer base {
+  .prose {
+    --tw-prose-headings: var(--color-dark);
+    --tw-prose-body: var(--color-text);
+    --tw-prose-links: var(--color-primary-dark);
+    --tw-prose-bold: var(--color-dark);
+    --tw-prose-quote-borders: var(--color-primary);
+    --tw-prose-hr: #e5e7eb;
+    --tw-prose-td-borders: #e5e7eb;
+    --tw-prose-th-borders: var(--color-dark);
+    --tw-prose-code: var(--color-dark);
+    --tw-prose-pre-bg: #f3f4f6;
+  }
+  .prose h1,
+  .prose h2,
+  .prose h3 {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+  }
+  .prose a {
+    font-weight: 700;
+    text-decoration-color: var(--color-primary);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+  .prose a:hover {
+    color: var(--color-primary-dark);
+  }
+  .prose blockquote {
+    border-left-color: var(--color-primary);
+    background: #fdb81310;
+    padding: 1rem 1.5rem;
+    border-radius: 0 4px 4px 0;
+  }
+  .prose table {
+    font-size: 0.9em;
+  }
+  .prose thead {
+    background: var(--color-dark);
+    color: var(--color-primary);
   }
 }

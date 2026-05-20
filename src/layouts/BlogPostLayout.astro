@@ -1,0 +1,222 @@
+---
+import Layout from './Layout.astro';
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  related?: CollectionEntry<'blog'>[];
+}
+
+const { post, related = [] } = Astro.props;
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  heroImage,
+  heroImageAlt,
+  author,
+  category,
+  tags,
+  faqJsonLd,
+} = post.data;
+
+const SITE = 'https://construhomescr.com';
+const slug = post.id.replace(/\.mdx$/, '');
+const url = `${SITE}/blog/${slug}/`;
+
+const categoryLabels: Record<string, string> = {
+  costos: 'Costos',
+  permisos: 'Permisos',
+  inversion: 'Inversión',
+  modelos: 'Modelos',
+  zona: 'Zona Norte',
+  guias: 'Guías',
+};
+
+const blogPostingSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description,
+  image: `${SITE}${heroImage.src}`,
+  author: {
+    '@type': 'Organization',
+    '@id': `${SITE}/#contractor`,
+    name: author,
+  },
+  publisher: { '@id': `${SITE}/#contractor` },
+  datePublished: pubDate.toISOString(),
+  dateModified: (updatedDate ?? pubDate).toISOString(),
+  mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+  inLanguage: 'es-CR',
+  articleSection: categoryLabels[category] ?? category,
+  keywords: tags.join(', '),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE },
+    { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE}/blog/` },
+    { '@type': 'ListItem', position: 3, name: title, item: url },
+  ],
+};
+
+const faqSchema =
+  faqJsonLd && faqJsonLd.length > 0
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: faqJsonLd.map((f) => ({
+          '@type': 'Question',
+          name: f.q,
+          acceptedAnswer: { '@type': 'Answer', text: f.a },
+        })),
+      }
+    : null;
+---
+
+<Layout
+  title={`${title} | ConstruHomesCR`}
+  description={description}
+  image={`${SITE}${heroImage.src}`}
+  canonical={url}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(blogPostingSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
+
+  <div class="pt-24 pb-32 bg-white">
+    <!-- Breadcrumb -->
+    <nav
+      aria-label="Breadcrumb"
+      class="container mx-auto px-6 max-w-4xl mb-8 text-xs text-steel uppercase tracking-widest font-bold"
+    >
+      <ol class="flex items-center gap-2">
+        <li><a href="/" class="hover:text-primary transition-colors">Inicio</a></li>
+        <li class="opacity-40">/</li>
+        <li><a href="/blog/" class="hover:text-primary transition-colors">Blog</a></li>
+        <li class="opacity-40">/</li>
+        <li class="text-primary truncate max-w-[200px]">{title}</li>
+      </ol>
+    </nav>
+
+    <!-- Hero image -->
+    <div class="container mx-auto px-6 max-w-4xl mb-10">
+      <Image
+        src={heroImage}
+        alt={heroImageAlt}
+        width={1200}
+        height={630}
+        format="webp"
+        quality={82}
+        loading="eager"
+        fetchpriority="high"
+        class="w-full object-cover rounded-sm shadow-xl"
+      />
+    </div>
+
+    <!-- Header -->
+    <header class="container mx-auto px-6 max-w-4xl mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="inline-block px-3 py-1 bg-primary text-dark text-[10px] font-black uppercase tracking-[0.3em]">
+          {categoryLabels[category] ?? category}
+        </span>
+        {tags.slice(0, 3).map((tag) => (
+          <span class="inline-block px-2 py-0.5 bg-dark/5 text-steel text-[10px] font-bold uppercase tracking-wider">
+            {tag}
+          </span>
+        ))}
+      </div>
+
+      <h1 class="font-display text-3xl md:text-4xl lg:text-5xl font-black text-dark uppercase tracking-tighter leading-none mb-6">
+        {title}
+      </h1>
+
+      <div class="flex items-center gap-4 text-sm text-steel border-t border-gray-100 pt-4">
+        <span>{author}</span>
+        <span class="opacity-40">·</span>
+        <time datetime={pubDate.toISOString()}>
+          {pubDate.toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </time>
+        {updatedDate && (
+          <>
+            <span class="opacity-40">·</span>
+            <span>
+              Actualizado{' '}
+              <time datetime={updatedDate.toISOString()}>
+                {updatedDate.toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' })}
+              </time>
+            </span>
+          </>
+        )}
+      </div>
+    </header>
+
+    <!-- Article body -->
+    <article class="container mx-auto px-6 max-w-4xl">
+      <div class="prose prose-lg max-w-none">
+        <slot />
+      </div>
+    </article>
+
+    <!-- WhatsApp CTA -->
+    <div class="container mx-auto px-6 max-w-4xl mt-16">
+      <div class="bg-dark p-10 text-center border-b-4 border-primary">
+        <p class="font-display text-2xl font-black text-white uppercase tracking-tighter mb-2">
+          ¿Querés construir en La Fortuna?
+        </p>
+        <p class="text-gray-400 mb-6 text-sm">
+          Recibí una cotización sin compromiso directo en WhatsApp.
+        </p>
+        <a
+          href="https://wa.me/50684291847?text=Hola%2C%20le%C3%AD%20el%20blog%20de%20ConstruHomesCR%20y%20me%20interesa%20cotizar"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block bg-primary text-dark font-black uppercase tracking-widest text-sm px-10 py-4 hover:brightness-110 transition-all shadow-xl active:scale-95"
+        >
+          Cotizá gratis por WhatsApp &rarr;
+        </a>
+      </div>
+    </div>
+
+    <!-- Related posts -->
+    {related.length > 0 && (
+      <div class="container mx-auto px-6 max-w-4xl mt-16">
+        <h2 class="font-display text-2xl font-black text-dark uppercase tracking-tighter mb-8">
+          También te puede interesar
+        </h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {related.map((p) => (
+            <a
+              href={`/blog/${p.id.replace(/\.mdx$/, '')}/`}
+              class="group border border-gray-100 hover:border-primary/40 hover:shadow-lg transition-all"
+            >
+              <Image
+                src={p.data.heroImage}
+                alt={p.data.heroImageAlt}
+                width={400}
+                height={220}
+                format="webp"
+                quality={75}
+                loading="lazy"
+                class="w-full h-40 object-cover"
+              />
+              <div class="p-5">
+                <span class="text-[10px] font-black uppercase tracking-widest text-primary">
+                  {categoryLabels[p.data.category] ?? p.data.category}
+                </span>
+                <p class="font-black text-dark uppercase tracking-tight text-sm mt-1 leading-snug group-hover:text-primary transition-colors line-clamp-2">
+                  {p.data.title}
+                </p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
+</Layout>

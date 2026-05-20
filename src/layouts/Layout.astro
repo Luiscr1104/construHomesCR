@@ -13,12 +13,12 @@ interface Props {
 
 const SITE = "https://construhomescr.com";
 const DEFAULT_TITLE = "ConstruHomesCR | Construcción Residencial en La Fortuna, San Carlos";
-const DEFAULT_DESC = "Construí tu casa en La Fortuna de San Carlos y zona norte de Costa Rica. Modelos residenciales de calidad, precios transparentes y acompañamiento personalizado. Cotizá hoy.";
+const DEFAULT_DESC = "Construí tu casa en La Fortuna de San Carlos. Modelos llave en mano, precios transparentes y acompañamiento total. Cotizá gratis por WhatsApp.";
 
 const {
   title = DEFAULT_TITLE,
   description = DEFAULT_DESC,
-  image = `${SITE}/img.jpg`,
+  image = `${SITE}/og-default.jpg`,
   canonical = `${SITE}${Astro.url.pathname}`,
 } = Astro.props;
 
@@ -31,11 +31,20 @@ const localBusinessSchema = {
       name: "ConstruHomesCR",
       url: SITE,
       logo: `${SITE}/isotipo.png`,
-      image: `${SITE}/img.jpg`,
+      image: [
+        `${SITE}/og-default.jpg`,
+        `${SITE}/images/Curri.jpeg`,
+        `${SITE}/images/Trapiche.jpeg`,
+        `${SITE}/images/Libelula.jpeg`,
+      ],
       description: DEFAULT_DESC,
       telephone: "+50684291847",
       email: "info@construhomescr.com",
       priceRange: "$$",
+      currenciesAccepted: "CRC, USD",
+      paymentAccepted: "Cash, Bank Transfer",
+      knowsLanguage: ["es", "en"],
+      hasMap: "https://www.google.com/maps/place/ConstruHomesCR/@10.4699403,-84.6403884,4275m/data=!3m2!1e3!4b1!4m6!3m5!1s0x6f63c6638f5d65c3:0xa56b007e0259247b!8m2!3d10.4699402!4d-84.6403884!16s%2Fg%2F11njxhqrjw",
       areaServed: [
         { "@type": "City", name: "La Fortuna" },
         { "@type": "AdministrativeArea", name: "San Carlos" },
@@ -60,7 +69,48 @@ const localBusinessSchema = {
           closes: "18:00",
         },
       ],
+      // TODO: agregar Instagram, Facebook, YouTube cuando se creen las cuentas
       sameAs: [],
+    },
+    {
+      "@type": "Service",
+      "@id": `${SITE}/#service-llave-en-mano`,
+      name: "Construcción residencial llave en mano",
+      serviceType: "Construcción residencial",
+      provider: { "@id": `${SITE}/#contractor` },
+      areaServed: { "@type": "AdministrativeArea", name: "Zona Norte, Costa Rica" },
+    },
+    {
+      "@type": "Service",
+      "@id": `${SITE}/#service-diseno`,
+      name: "Diseño arquitectónico",
+      serviceType: "Diseño y planificación",
+      provider: { "@id": `${SITE}/#contractor` },
+      areaServed: { "@type": "AdministrativeArea", name: "Zona Norte, Costa Rica" },
+    },
+    {
+      "@type": "Service",
+      "@id": `${SITE}/#service-cabanas`,
+      name: "Cabañas turísticas para Airbnb",
+      serviceType: "Construcción turística",
+      provider: { "@id": `${SITE}/#contractor` },
+      areaServed: { "@type": "City", name: "La Fortuna" },
+    },
+    {
+      "@type": "Service",
+      "@id": `${SITE}/#service-permisos`,
+      name: "Gestión de permisos municipales e INVU",
+      serviceType: "Trámites y permisos de construcción",
+      provider: { "@id": `${SITE}/#contractor` },
+      areaServed: { "@type": "AdministrativeArea", name: "San Carlos" },
+    },
+    {
+      "@type": "Service",
+      "@id": `${SITE}/#service-ict`,
+      name: "Acompañamiento ICT y declaratoria turística",
+      serviceType: "Consultoría turística",
+      provider: { "@id": `${SITE}/#contractor` },
+      areaServed: { "@type": "City", name: "La Fortuna" },
     },
     {
       "@type": "WebSite",
@@ -98,7 +148,7 @@ const localBusinessSchema = {
 
     <!-- Icons / PWA -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <!-- TODO: agregar apple-touch-icon.png (180×180) cuando esté disponible -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#fdb813" />
 
@@ -119,6 +169,7 @@ const localBusinessSchema = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={image} />
+    <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="ConstruHomesCR — Construcción residencial en La Fortuna" />
