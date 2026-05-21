@@ -1,6 +1,4 @@
 ---
-import { Image } from "astro:assets";
-import isotipoImg from "../assets/isotipo.png";
 
 const navLinks = [
   { label: "Diseños", href: "/#disenos" },
@@ -43,20 +41,15 @@ const ticker = Array(2).fill(
       <div class="lg:col-span-5 flex flex-col justify-between gap-10">
         <div>
           <!-- Logo -->
-          <a href="/" class="inline-flex items-center gap-3 group mb-8">
-            <div class="bg-primary p-2 group-hover:scale-105 transition-transform">
-              <Image
-                src={isotipoImg}
-                alt="ConstruHomesCR"
-                width={100}
-                height={40}
-                class="h-8 w-auto"
-                loading="lazy"
-              />
-            </div>
-            <span class="font-display text-xl font-bold tracking-tighter text-white uppercase">
-              Constru<span class="text-primary">Homes</span>CR
-            </span>
+          <a href="/" class="inline-flex mb-8 hover:opacity-90 transition-opacity group-hover:scale-105">
+            <img
+              src="/icons/Nuevos/logo-primary-light.svg"
+              alt="ConstruHomesCR"
+              class="h-12 w-auto"
+              loading="lazy"
+              width="480"
+              height="96"
+            />
           </a>
 
           <!-- Large statement -->

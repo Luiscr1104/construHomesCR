@@ -1,6 +1,4 @@
 ---
-import { Image } from "astro:assets";
-import isotipoImg from "../assets/isotipo.png";
 ---
 
 <header
@@ -9,23 +7,15 @@ import isotipoImg from "../assets/isotipo.png";
 >
   <div class="container mx-auto px-6 flex items-center justify-between">
     <!-- Logo -->
-    <a href="/" class="flex items-center gap-3 group">
-      <div
-        class="relative bg-primary rounded-lg p-1.5 transition-all duration-300 group-hover:scale-105"
-      >
-        <Image
-          src={isotipoImg}
-          alt="ConstruHomesCR Logo"
-          width={80}
-          height={32}
-          class="h-7 w-auto block"
-          loading="eager"
-        />
-      </div>
-      <span
-        class="font-display text-base font-bold tracking-tight text-dark hidden sm:block"
-        >Constru<span class="text-primary">Homes</span>CR</span
-      >
+    <a href="/" class="flex items-center group hover:opacity-90 transition-opacity">
+      <img
+        src="/icons/Nuevos/logo-primary.svg"
+        alt="ConstruHomesCR"
+        class="h-10 w-auto"
+        loading="eager"
+        width="480"
+        height="96"
+      />
     </a>
 
     <!-- Nav desktop -->
