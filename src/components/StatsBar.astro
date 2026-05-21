@@ -1,9 +1,9 @@
 ---
 const stats = [
-  { number: "15+", label: "Años en el mercado", sub: "Experiencia comprobada", icon: "/icons/Establish.svg" },
-  { number: "80+", label: "Proyectos completados", sub: "En zona norte", icon: "/icons/home.svg" },
-  { number: "95%", label: "Clientes satisfechos", sub: "Recomendarían ConstruHomesCR", icon: "/icons/Business.svg" },
-  { number: "100%", label: "Entrega a tiempo", sub: "Sin sorpresas", icon: "/icons/Partnership.svg" },
+  { number: "15+", label: "Años en el mercado", sub: "Experiencia comprobada" },
+  { number: "80+", label: "Proyectos completados", sub: "En zona norte" },
+  { number: "95%", label: "Clientes satisfechos", sub: "Recomendarían ConstruHomesCR" },
+  { number: "100%", label: "Entrega a tiempo", sub: "Sin sorpresas" },
 ];
 ---
 
@@ -12,9 +12,6 @@ const stats = [
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 lg:divide-x lg:divide-white/10">
       {stats.map((stat) => (
         <dl class="text-center lg:px-8 py-2">
-          <div class="flex justify-center mb-4">
-            <img src={stat.icon} alt="" aria-hidden="true" class="w-14 h-14 opacity-90" />
-          </div>
           <dt class="font-display text-5xl md:text-6xl font-black text-primary mb-2 leading-none">{stat.number}</dt>
           <dd class="text-white font-bold uppercase tracking-wider text-xs md:text-sm mb-1">{stat.label}</dd>
           <dd class="text-gray-500 text-[10px] uppercase tracking-widest font-bold">{stat.sub}</dd>
