@@ -18,6 +18,16 @@ const categoryLabels: Record<string, string> = {
 };
 
 const categories = [...new Set(posts.map((p) => p.data.category))];
+
+const readingTime = (body: string): number => {
+  const words = body.trim().split(/\s+/).length;
+  return Math.max(1, Math.ceil(words / 200));
+};
+
+const postsWithTime = posts.map((p) => ({
+  ...p,
+  readTime: readingTime(p.body ?? ''),
+}));
 ---
 
 <Layout
@@ -44,7 +54,7 @@ const categories = [...new Set(posts.map((p) => p.data.category))];
     <div class="container mx-auto px-6 max-w-6xl">
       <!-- Posts grid -->
       {categories.map((cat) => {
-        const catPosts = posts.filter((p) => p.data.category === cat);
+        const catPosts = postsWithTime.filter((p) => p.data.category === cat);
         if (catPosts.length === 0) return null;
         return (
           <div class="mb-20">
@@ -75,16 +85,22 @@ const categories = [...new Set(posts.map((p) => p.data.category))];
                       />
                     </div>
                     <div class="p-6">
-                      <time
-                        datetime={post.data.pubDate.toISOString()}
-                        class="text-[10px] font-bold uppercase tracking-widest text-steel"
-                      >
-                        {post.data.pubDate.toLocaleDateString('es-CR', {
-                          year: 'numeric',
-                          month: 'short',
-                          day: 'numeric',
-                        })}
-                      </time>
+                      <div class="flex items-center gap-3 mt-1 mb-2">
+                        <time
+                          datetime={post.data.pubDate.toISOString()}
+                          class="text-[10px] font-bold uppercase tracking-widest text-steel"
+                        >
+                          {post.data.pubDate.toLocaleDateString('es-CR', {
+                            year: 'numeric',
+                            month: 'short',
+                            day: 'numeric',
+                          })}
+                        </time>
+                        <span class="text-steel/40 text-[10px]">·</span>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-steel">
+                          {post.readTime} min lectura
+                        </span>
+                      </div>
                       <h2 class="font-display text-xl font-black text-dark uppercase tracking-tighter mt-2 mb-3 leading-snug group-hover:text-primary transition-colors line-clamp-2">
                         {post.data.title}
                       </h2>
