@@ -163,6 +163,39 @@ const faqSchema =
       </div>
     </article>
 
+    <!-- FAQ Section -->
+    {faqJsonLd && faqJsonLd.length > 0 && (
+      <section
+        aria-label="Preguntas frecuentes"
+        class="container mx-auto px-6 max-w-4xl mt-16"
+      >
+        <h2 class="font-display text-2xl font-black text-dark uppercase tracking-tighter mb-6">
+          Preguntas frecuentes
+        </h2>
+        <div class="divide-y divide-gray-100 border-t border-gray-100">
+          {faqJsonLd.map((item) => (
+            <details class="group py-1">
+              <summary class="flex items-center justify-between gap-4 py-4 cursor-pointer list-none select-none">
+                <span class="font-bold text-dark text-base leading-snug group-open:text-primary transition-colors pr-2">
+                  {item.q}
+                </span>
+                <span
+                  aria-hidden="true"
+                  class="shrink-0 w-6 h-6 rounded-full bg-dark/5 flex items-center justify-center text-steel group-open:bg-primary group-open:text-dark transition-all font-black text-xs"
+                >
+                  <span class="group-open:hidden">+</span>
+                  <span class="hidden group-open:inline">−</span>
+                </span>
+              </summary>
+              <p class="pb-5 text-steel leading-relaxed text-sm pr-10">
+                {item.a}
+              </p>
+            </details>
+          ))}
+        </div>
+      </section>
+    )}
+
     <!-- WhatsApp CTA -->
     <div class="container mx-auto px-6 max-w-4xl mt-16">
       <div class="bg-dark p-10 text-center border-b-4 border-primary">
