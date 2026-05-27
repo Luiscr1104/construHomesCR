@@ -84,6 +84,14 @@ const faqSchema =
   description={description}
   image={`${SITE}${heroImage.src}`}
   canonical={url}
+  ogType="article"
+  article={{
+    publishedTime: pubDate.toISOString(),
+    modifiedTime: (updatedDate ?? pubDate).toISOString(),
+    author: author,
+    section: categoryLabels[category] ?? category,
+    tags: tags,
+  }}
 >
   <script type="application/ld+json" set:html={JSON.stringify(blogPostingSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
