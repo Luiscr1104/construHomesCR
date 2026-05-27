@@ -38,7 +38,7 @@
       }
 
       <a
-        href="https://wa.me/50684291847?text=Hola%2C%20me%20interesa%20cotizar%20un%20proyecto"
+        href="https://wa.me/50660290126?text=Hola%2C%20me%20interesa%20cotizar%20un%20proyecto"
         target="_blank"
         rel="noopener noreferrer"
         class="bg-primary text-dark px-6 py-2.5 rounded-sm font-bold uppercase text-xs tracking-widest hover:brightness-110 transition-all shadow-md active:scale-95"
@@ -60,48 +60,48 @@
       <span class="w-6 h-0.5 bg-dark transition-all duration-300" id="bar3"></span>
     </button>
   </div>
-
-  <!-- Mobile Menu Overlay -->
-  <div
-    id="mobile-menu"
-    role="dialog"
-    aria-modal="true"
-    aria-label="Menú principal"
-    class="fixed inset-0 bg-dark/95 z-[60] flex flex-col items-center justify-center translate-x-full transition-transform duration-500 ease-in-out md:hidden"
-  >
-    <button
-      id="close-menu"
-      aria-label="Cerrar menú"
-      class="absolute top-8 right-8 text-primary text-4xl leading-none"
-      >&times;</button
-    >
-    <nav class="flex flex-col items-center gap-8">
-      {
-        [
-          { label: "Diseños", href: "/#disenos" },
-          { label: "Galería", href: "/#galeria" },
-          { label: "Blog", href: "/blog/" },
-          { label: "Contacto", href: "/#contacto" },
-        ].map((item) => (
-          <a
-            href={item.href}
-            class="mobile-link text-3xl font-black uppercase text-white hover:text-primary transition-colors"
-          >
-            {item.label}
-          </a>
-        ))
-      }
-      <a
-        href="https://wa.me/50684291847?text=Hola%2C%20me%20interesa%20cotizar%20un%20proyecto"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="mobile-link mt-8 bg-primary text-dark px-10 py-4 rounded-sm font-black uppercase text-lg shadow-2xl"
-      >
-        WhatsApp
-      </a>
-    </nav>
-  </div>
 </header>
+
+<!-- Mobile Menu Overlay — fuera del header para evitar clipping por backdrop-filter -->
+<div
+  id="mobile-menu"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Menú principal"
+  class="fixed inset-0 bg-dark/95 z-[60] flex flex-col items-center justify-center translate-x-full transition-transform duration-500 ease-in-out md:hidden"
+>
+  <button
+    id="close-menu"
+    aria-label="Cerrar menú"
+    class="absolute top-8 right-8 text-primary text-4xl leading-none"
+    >&times;</button
+  >
+  <nav class="flex flex-col items-center gap-8">
+    {
+      [
+        { label: "Diseños", href: "/#disenos" },
+        { label: "Galería", href: "/#galeria" },
+        { label: "Blog", href: "/blog/" },
+        { label: "Contacto", href: "/#contacto" },
+      ].map((item) => (
+        <a
+          href={item.href}
+          class="mobile-link text-3xl font-black uppercase text-white hover:text-primary transition-colors"
+        >
+          {item.label}
+        </a>
+      ))
+    }
+    <a
+      href="https://wa.me/50660290126?text=Hola%2C%20me%20interesa%20cotizar%20un%20proyecto"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mobile-link mt-8 bg-primary text-dark px-10 py-4 rounded-sm font-black uppercase text-lg shadow-2xl"
+    >
+      WhatsApp
+    </a>
+  </nav>
+</div>
 
 <script>
   const setupNav = () => {

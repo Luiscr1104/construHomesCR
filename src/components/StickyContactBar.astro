@@ -1,6 +1,4 @@
 ---
-import { Image } from "astro:assets";
-import isotipoImg from "../assets/isotipo.png";
 ---
 
 <div
@@ -10,25 +8,25 @@ import isotipoImg from "../assets/isotipo.png";
   <div class="container mx-auto px-4 py-3 flex items-center justify-between gap-4">
     <!-- Marca + teléfono — visible solo en sm+ -->
     <div class="hidden sm:flex items-center gap-3 shrink-0">
-      <Image
-        src={isotipoImg}
+      <img
+        src="/icons/Nuevos/logo-mark.svg"
         alt="ConstruHomesCR"
-        width={32}
-        height={18}
+        width={40}
+        height={40}
         class="opacity-90 object-contain"
       />
       <div>
         <div class="text-[9px] font-black uppercase tracking-[0.2em] text-primary leading-none mb-0.5">
           ConstruHomesCR
         </div>
-        <div class="text-sm font-black text-white leading-none">+506 8429 1847</div>
+        <div class="text-sm font-black text-white leading-none">+506 6029 0126</div>
       </div>
     </div>
 
     <!-- Botones -->
     <div class="flex gap-3 w-full sm:w-auto">
       <a
-        href="https://wa.me/50684291847?text=Hola%2C+me+interesa+saber+m%C3%A1s+sobre+construir+una+caba%C3%B1a+tur%C3%ADstica+en+La+Fortuna"
+        href="https://wa.me/50660290126?text=Hola%2C+me+interesa+saber+m%C3%A1s+sobre+construir+una+caba%C3%B1a+tur%C3%ADstica+en+La+Fortuna"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Contactar por WhatsApp"

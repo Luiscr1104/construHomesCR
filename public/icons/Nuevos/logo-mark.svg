@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80" role="img" aria-label="ConstruHomesCR mark">
+  <title>ConstruHomesCR — Mark</title>
+  <rect width="80" height="80" rx="14" fill="#1A1614"></rect>
+  <path d="M 16 48 L 40 24 L 62 48" stroke="#C8472D" stroke-width="4" fill="none" stroke-linejoin="round" stroke-linecap="round"></path>
+  <path d="M 62 48 L 68 48" stroke="#C8472D" stroke-width="4" stroke-linecap="round"></path>
+  <path d="M 14 60 L 66 60" stroke="#C8472D" stroke-width="4" stroke-linecap="round"></path>
+  <rect x="48" y="28" width="3.5" height="7" fill="#C8472D"></rect>
+</svg>
