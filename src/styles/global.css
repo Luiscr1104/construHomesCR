@@ -85,4 +85,7 @@ body {
     background: var(--color-dark);
     color: var(--color-primary);
   }
+  .prose thead th {
+    color: var(--color-primary);
+  }
 }
