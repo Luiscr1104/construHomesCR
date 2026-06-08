@@ -81,11 +81,13 @@ body {
   .prose table {
     font-size: 0.9em;
   }
-  .prose thead {
-    background: var(--color-dark);
-    color: var(--color-primary);
-  }
-  .prose thead th {
-    color: var(--color-primary);
-  }
+}
+
+/* Fuera de @layer — gana sobre el plugin typography */
+.prose thead {
+  background: var(--color-dark);
+  color: var(--color-primary);
+}
+.prose thead th {
+  color: var(--color-primary) !important;
 }
